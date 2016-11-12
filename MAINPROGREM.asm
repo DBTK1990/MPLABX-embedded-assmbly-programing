@@ -29,7 +29,7 @@ Reset:
 main:
      ;goto Hisor
      ;goto Kafal
-     goto boothKafal
+     ;goto boothKafal
      ;goto Hiluk
 Hisor:
      movf 0x36,0x00
