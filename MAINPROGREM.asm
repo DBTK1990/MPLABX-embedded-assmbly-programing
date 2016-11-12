@@ -29,8 +29,8 @@ Reset:
 main:
      ;goto Hisor
      ;goto Kafal
-     ;goto boothKafal
-     goto Hiluk
+     goto boothKafal
+     ;goto Hiluk
 Hisor:
      movf 0x36,0x00
      subwf 0x35,0x00
