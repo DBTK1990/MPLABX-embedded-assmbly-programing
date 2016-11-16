@@ -12,10 +12,10 @@
     org 0x00
     
 Reset:
-    addlw 20
+    addlw 0x02
     movwf 0x40
     clrw
-    addlw 8
+    addlw 0x09
     movwf 0x41
     
     goto Start
@@ -29,8 +29,8 @@ Reset:
 main:
      ;goto Hisor
      ;goto Kafal
-     goto boothKafal
-     ;goto Hiluk
+     ;goto boothKafal
+    goto Hiluk
 Hisor:
      movf 0x36,0x00
      subwf 0x35,0x00
@@ -163,7 +163,8 @@ PreCheckH:
     MbigerBNo:
     decfsz 0x41,1
     goto LoopHiluk
-     goto exit
+
+    goto exit
     
 
    Abs:
