@@ -1,4 +1,4 @@
-MPASM 5.70                   MAINPROGREM.ASM   11-12-2016  16:22:05         PAGE  1
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:12:50         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -27,192 +27,213 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00011     
                       00012     org 0x00
                       00013     
-0000                  00014 Reset:
-0000   3E20           00015     addlw 0x20
-0001   00C0           00016     movwf 0x40
-0002   0103           00017     clrw
-0003   3E08           00018     addlw 0x08
-0004   00C1           00019     movwf 0x41
-                      00020     
-0005   2???           00021     goto Start
-                      00022 
-                      00023   
+Warning[207]: Found label after column 1. (status)
+  00000003            00014      status=003h
+                      00015     
+0000                  00016 Reset:
+0000   3E00           00017     addlw 0x00
+0001   00C0           00018     movwf 0x40
+0002   0103           00019     clrw
+0003   3E20           00020     addlw 0x20
+0004   00C1           00021     movwf 0x41
+                      00022     
+0005   2???           00023     goto Start
+                      00024     
+                      00025   
+                      00026   
 Warning[207]: Found label after column 1. (Start)
-0006                  00024      Start:
-0006   0183           00025      clrf 003h     
-0007   1603           00026      bsf 003h,0x04 
-0008   1583           00027      bsf 003h,0x03
-                      00028 
-0009                  00029 main:
-                      00030      ;goto Hisor
-                      00031      ;goto Kafal
-0009   2???           00032      goto boothKafal
-                      00033 
-000A                  00034 Hisor:
-000A   0836           00035      movf 0x36,0x00
-000B   0235           00036      subwf 0x35,0x00
-                      00037 
-000C   1C03           00038      btfss 003h,0
-000D   2???           00039      call Abs
+0006                  00027      Start:
+0006   0183           00028      clrf STATUS        
+0007   1603           00029      bsf 003h,0x04 
+0008   1583           00030      bsf 003h,0x03
+                      00031 
+0009                  00032 main:
+                      00033      ;goto Hisor
+                      00034      ;goto Kafal
+                      00035      ;goto boothKafal
+0009   2???           00036      goto Hiluk
+000A                  00037 Hisor:
+000A   0836           00038      movf 0x36,0x00
+000B   0235           00039      subwf 0x35,0x00
                       00040 
-000E   00B7           00041      movwf 0x37
-000F   2???           00042      goto exit
-MPASM 5.70                   MAINPROGREM.ASM   11-12-2016  16:22:05         PAGE  2
+000C   1C03           00041      btfss 003h,0
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:12:50         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
+000D   2???           00042      call Abs
                       00043 
-                      00044 
-0010                  00045 boothKafal:
-                      00046     
-0010                  00047 PreCheck:
-0010   0103           00048     clrw
+000E   00B7           00044      movwf 0x37
+000F   2???           00045      goto exit
+                      00046 
+                      00047 
+0010                  00048 boothKafal:
                       00049     
-0011   1103           00050     bcf 003h,2
-                      00051     
-0012   01C3           00052     clrf 0x43
-0013   01C2           00053     clrf 0x42
-0014   0641           00054     xorwf 0x41,0
-0015   0640           00055     xorwf 0x40,0
-                      00056 
-0016   0103           00057     clrw
-0017   1903           00058     btfsc 003h,2
-0018   2???           00059     goto exit
-                      00060 
-0019                  00061 Builder:
-                      00062     
-0019   3E08           00063     addlw 0x08
-001A   00B8           00064     movwf 0x38
-                      00065   
-001B   01B9           00066     clrf 0x39
-001C   1840           00067     btfsc 0x40,0
-001D   14B9           00068     bsf 0x39,1
-001E   10B9           00069     bcf 0x39,1
-                      00070     
-001F   0840           00071     movf 0x40,0
-0020   00C2           00072     movwf 0x42
-                      00073     
-0021   0941           00074     comf 0x41,0
-0022   00C0           00075     movwf 0x40
-Message[305]: Using default destination of 1 (file).
-0023   0AC0           00076     incf 0x40
+0010                  00050 PreCheckK:
+0010   0103           00051     clrw
+0011   01C3           00052     clrf 0x43
+0012   01C2           00053     clrf 0x42
+                      00054 
+0013   1103           00055     bcf 003h,2
+                      00056     
+0014   04C1           00057     iorwf 0x41,1
+0015   04C0           00058     iorwf 0x40,1
+                      00059 
+0016   1903           00060     btfsc 003h,2
+0017   2???           00061     goto zerokapalexit
+                      00062 
+0018                  00063 BuilderK:
+                      00064     
+0018   0103           00065     clrw
+0019   1103           00066     bcf 003h,2
+                      00067     
+001A   1003           00068     bcf 003h,0
+                      00069     
+001B   3E08           00070     addlw 0x08
+001C   00B8           00071     movwf 0x38
+                      00072   
+001D   01B9           00073     clrf 0x39
+001E   1840           00074     btfsc 0x40,0
+001F   14B9           00075     bsf 0x39,1
+0020   10B9           00076     bcf 0x39,1
                       00077     
-0024                  00078 LoopBooth:
-0024   18B9           00079     btfsc 0x39,1
-0025   2???           00080     goto nextIfZero
-0026   1839           00081     btfsc 0x39,0
-0027   2???           00082     goto  MplusA
-0028   2???           00083     goto MtoBtoLast
+0021   0840           00078     movf 0x40,0
+0022   00C2           00079     movwf 0x42
+                      00080     
+0023   0941           00081     comf 0x41,0
+0024   00C0           00082     movwf 0x40
+Message[305]: Using default destination of 1 (file).
+0025   0AC0           00083     incf 0x40
                       00084     
+0026                  00085 LoopBooth:
+                      00086    
+0026   1842           00087     btfsc 0x42,0
+0027   2???           00088     goto nextIfZero
+0028   1803           00089     btfsc 003h,0
+0029   2???           00090     goto  MplusA
+002A   2???           00091     goto MtoBtoLast
+                      00092     
 Warning[207]: Found label after column 1. (nextIfZero)
-0029                  00085     nextIfZero:
-0029   1839           00086     btfsc 0x39,0
-002A   2???           00087     goto MtoBtoLast
-002B   2???           00088     goto MpahutA
-                      00089     
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:12:50         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+002B                  00093     nextIfZero:
+002B   1883           00094     btfsc 003h,1
+002C   2???           00095     goto MtoBtoLast
+002D   2???           00096     goto MpahutA
+                      00097     
 Warning[207]: Found label after column 1. (MplusA)
-002C                  00090     MplusA:
-002C   0841           00091     movfw 0x41
-002D   0743           00092     addwf 0x43,0
-MPASM 5.70                   MAINPROGREM.ASM   11-12-2016  16:22:05         PAGE  3
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-002E   2???           00093     goto MtoBtoLast
-                      00094     
+002E                  00098     MplusA:
+002E   0841           00099     movfw 0x41
+002F   07C3           00100     addwf 0x43,1
+0030   1003           00101     bcf 003h,0
+0031   2???           00102     goto MtoBtoLast
+                      00103     
 Warning[207]: Found label after column 1. (MpahutA)
-002F                  00095     MpahutA:
-002F   1539           00096     bsf 0x39,2
-0030   0840           00097     movfw 0x40
-Message[305]: Using default destination of 1 (file).
-0031   07C3           00098     addwf 0x43
-                      00099     
-Warning[207]: Found label after column 1. (MtoBtoLast)
-0032                  00100     MtoBtoLast:
-0032   18B9           00101     btfsc 0x39,1
-0033   1439           00102     bsf 0x39,0
-0034   1039           00103     bcf 0x39,0
-                      00104     
-0035   1842           00105     btfsc 0x42,0
-0036   14B9           00106     bsf 0x39,1
-0037   10B9           00107     bcf 0x39,1
+0032                  00104     MpahutA:
+0032   0840           00105     movfw 0x40
+0033   07C3           00106     addwf 0x43,1
+0034   1403           00107     bsf 003h,0
                       00108     
-0038   1843           00109     btfsc 0x43,0
-0039   1403           00110     bsf 003h,0
-003A   1003           00111     bcf 003h,0
-003B   0C42           00112     rrf 0x42,0
-                      00113     
-003C   1939           00114     btfsc 0x39,2
-003D   1403           00115     bsf 003h,0
-003E   1003           00116     bcf 003h,0
-003F   0C43           00117     rrf 0x43,0
-                      00118    
-0040   0B38           00119     decfsz 0x38,0
-0041   2???           00120     goto LoopBooth
-0042   2???           00121     goto exit
-                      00122 
-                      00123 
-                      00124 
-0043                  00125 Kafal:
-0043   01C2           00126     clrf 0x42
-0044   01C3           00127     clrf 0x43
-0045   0103           00128     clrw
-                      00129     
-Message[305]: Using default destination of 1 (file).
-0046   06C1           00130     xorwf 0x41
-Message[305]: Using default destination of 1 (file).
-0047   06C0           00131     xorwf 0x40
-0048   1903           00132     btfsc 003h,0x02
-0049   2???           00133     goto zerokapalexit
-                      00134     
-004A   0840           00135     movfw 0x40
-                      00136     
-Warning[207]: Found label after column 1. (loop)
-004B                  00137   loop:
-Message[305]: Using default destination of 1 (file).
-004B   07C2           00138     addwf 0x42    
-MPASM 5.70                   MAINPROGREM.ASM   11-12-2016  16:22:05         PAGE  4
+                      00109     
+Warning[207]: Found label after column 1. (MtoBtoLast)
+0035                  00110     MtoBtoLast:
+                      00111     
+0035   0CC3           00112     rrf 0x43,1
+0036   0CC2           00113     rrf 0x42,1
+                      00114     
+                      00115     
+0037   0BB8           00116     decfsz 0x38,1
+0038   2???           00117     goto LoopBooth
+0039   2???           00118     goto exit
+                      00119 
+                      00120     
+                      00121 
+003A                  00122 Hiluk:
+                      00123     
+003A                  00124 PreCheckH:
+003A   0103           00125     clrw
+                      00126     
+003B   1103           00127     bcf 003h,2
+                      00128     
+003C   04C1           00129     iorwf 0x41,1
+003D   1903           00130     btfsc 003h,2
+003E   2???           00131     goto zerokapalexit
+                      00132     
+003F   04C0           00133     iorwf 0x40,1
+0040   1903           00134     btfsc 003h,2
+0041   2???           00135     goto CantDivByZero
+                      00136 
+Warning[207]: Found label after column 1. (BuilderH)
+0042                  00137     BuilderH:
+                      00138     
+0042   01C3           00139     clrf 0x43
+0043   1103           00140     bcf 003h,2
+                      00141     
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:12:50         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-                      00139    ;
-004C   1803           00140    btfsc 003h,0
-Message[305]: Using default destination of 1 (file).
-004D   0AC3           00141     incf 0x43
-004E   1403           00142     bsf 003h,0
-                      00143     ;
-Message[305]: Using default destination of 1 (file).
-004F   0BC1           00144     decfsz 0x41
-0050   2???           00145     goto loop
-                      00146     
-0051   2???           00147     goto exit
+0044   0841           00142     movfw 0x41
+0045   00C2           00143     movwf 0x42
+                      00144     
+0046   0103           00145     clrw 
+0047   3E08           00146     addlw 0x08
+0048   00C1           00147     movwf 0x41
                       00148     
+Warning[207]: Found label after column 1. (LoopHiluk)
+0049                  00149     LoopHiluk:
+                      00150     
+0049   1003           00151     bcf 003h,0
+004A   0DC2           00152     rlf 0x42,1
+004B   0DC3           00153     rlf 0x43,1
+                      00154     
+004C   0840           00155     movfw 0x40
+004D   0243           00156     subwf 0x43,0
+                      00157     
+004E   1C03           00158     btfss 003h,0
+004F   2???           00159     goto MbigerBNo    
+0050   2???           00160     goto MbigerBYes
+                      00161     
+Warning[207]: Found label after column 1. (MbigerBYes)
+0051                  00162     MbigerBYes:
+0051   00C3           00163     movwf 0x43
+0052   1442           00164     bsf 0x42,0
+                      00165     
+Warning[207]: Found label after column 1. (MbigerBNo)
+0053                  00166     MbigerBNo:
+0053   0BC1           00167     decfsz 0x41,1
+0054   2???           00168     goto LoopHiluk
+0055   2???           00169      goto exit
+                      00170     
+                      00171 
 Warning[207]: Found label after column 1. (Abs)
-0052                  00149     Abs:
-0052   09B7           00150    comf  0x37,1
-0053   0A37           00151    incf 0x37,0
-0054   0008           00152    return
-                      00153 
-                      00154   
-                      00155 
-                      00156 
-0055                  00157 zerokapalexit:
+0056                  00172    Abs:
+0056   09B7           00173    comf  0x37,1
+0057   0A37           00174    incf 0x37,0
+0058   0008           00175    return
+                      00176 
+                      00177   
+                      00178 
+                      00179 
+0059                  00180 zerokapalexit:
 Warning[203]: Found opcode in column 1. (clrf)
-0055   01C3           00158 clrf 0x43
+0059   01C3           00181 clrf 0x43
 Warning[203]: Found opcode in column 1. (clrf)
-0056   01C2           00159 clrf 0x42    
-                      00160 
-                      00161 
-                      00162 
-0057                  00163 exit: 
-3FFB                  00164        END
-MPASM 5.70                   MAINPROGREM.ASM   11-12-2016  16:22:05         PAGE  5
+005A   01C2           00182 clrf 0x42    
+                      00183 
+005B                  00184 CantDivByZero:
+                      00185 
+005B                  00186 exit: 
+3FFB                  00187        END
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:12:50         PAGE  5
 
 
 SYMBOL TABLE
@@ -232,12 +253,13 @@ ADIF                              00000006
 ADON                              00000000
 ADRESH                            0000001E
 ADRESL                            0000009E
-Abs                               00000052
+Abs                               00000056
 BCLIE                             00000003
 BCLIF                             00000003
 BF                                00000000
 BRGH                              00000002
-Builder                           00000019
+BuilderH                          00000042
+BuilderK                          00000018
 C                                 00000000
 CCP1CON                           00000017
 CCP1IE                            00000002
@@ -270,13 +292,14 @@ CKE                               00000006
 CKP                               00000004
 CREN                              00000004
 CSRC                              00000007
-D                                 00000005
-MPASM 5.70                   MAINPROGREM.ASM   11-12-2016  16:22:05         PAGE  6
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:12:50         PAGE  6
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+CantDivByZero                     0000005B
+D                                 00000005
 DATA_ADDRESS                      00000005
 DC                                00000001
 D_A                               00000005
@@ -298,6 +321,7 @@ GIE                               00000007
 GO                                00000002
 GO_DONE                           00000002
 GO_NOT_DONE                       00000002
+Hiluk                             0000003A
 Hisor                             0000000A
 I2C_DATA                          00000005
 I2C_READ                          00000002
@@ -311,11 +335,13 @@ INTE                              00000004
 INTEDG                            00000006
 INTF                              00000001
 IRP                               00000007
-Kafal                             00000043
-LoopBooth                         00000024
-MpahutA                           0000002F
-MplusA                            0000002C
-MtoBtoLast                        00000032
+LoopBooth                         00000026
+LoopHiluk                         00000049
+MbigerBNo                         00000053
+MbigerBYes                        00000051
+MpahutA                           00000032
+MplusA                            0000002E
+MtoBtoLast                        00000035
 NOT_A                             00000005
 NOT_ADDRESS                       00000005
 NOT_BO                            00000000
@@ -325,17 +351,17 @@ NOT_PD                            00000003
 NOT_POR                           00000001
 NOT_RBPU                          00000007
 NOT_RC8                           00000006
-NOT_T1SYNC                        00000002
-NOT_TO                            00000004
-NOT_TX8                           00000006
-NOT_W                             00000002
-NOT_WRITE                         00000002
-MPASM 5.70                   MAINPROGREM.ASM   11-12-2016  16:22:05         PAGE  7
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:12:50         PAGE  7
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+NOT_TX8                           00000006
+NOT_W                             00000002
+NOT_WRITE                         00000002
 OBF                               00000006
 OERR                              00000001
 OPTION_REG                        00000081
@@ -366,7 +392,8 @@ PSA                               00000003
 PSPIE                             00000007
 PSPIF                             00000007
 PSPMODE                           00000004
-PreCheck                          00000010
+PreCheckH                         0000003A
+PreCheckK                         00000010
 R                                 00000002
 RA0                               00000000
 RA1                               00000001
@@ -383,18 +410,18 @@ RB5                               00000005
 RB6                               00000006
 RB7                               00000007
 RBIE                              00000003
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:12:50         PAGE  8
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 RBIF                              00000000
 RC0                               00000000
 RC1                               00000001
 RC2                               00000002
 RC3                               00000003
 RC4                               00000004
-MPASM 5.70                   MAINPROGREM.ASM   11-12-2016  16:22:05         PAGE  8
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 RC5                               00000005
 RC6                               00000006
 RC7                               00000007
@@ -442,18 +469,18 @@ SSPIE                             00000003
 SSPIF                             00000003
 SSPM0                             00000000
 SSPM1                             00000001
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:12:50         PAGE  9
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 SSPM2                             00000002
 SSPM3                             00000003
 SSPOV                             00000006
 SSPSTAT                           00000094
 STATUS                            00000003
 SYNC                              00000004
-MPASM 5.70                   MAINPROGREM.ASM   11-12-2016  16:22:05         PAGE  9
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 Start                             00000006
 T0CS                              00000005
 T0IE                              00000005
@@ -501,18 +528,18 @@ TRISB3                            00000003
 TRISB4                            00000004
 TRISB5                            00000005
 TRISB6                            00000006
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:12:50         PAGE 10
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 TRISB7                            00000007
 TRISC                             00000087
 TRISC0                            00000000
 TRISC1                            00000001
 TRISC2                            00000002
 TRISC3                            00000003
-MPASM 5.70                   MAINPROGREM.ASM   11-12-2016  16:22:05         PAGE 10
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 TRISC4                            00000004
 TRISC5                            00000005
 TRISC6                            00000006
@@ -560,18 +587,18 @@ _CP_OFF                           00003FFF
 _CP_UPPER_256                     00002FEF
 _DEBUG_OFF                        00003FFF
 _DEBUG_ON                         000037FF
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:12:50         PAGE 11
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 _DEVID1                           00002006
 _FOSC_EXTRC                       00003FFF
 _FOSC_HS                          00003FFE
 _FOSC_LP                          00003FFC
 _FOSC_XT                          00003FFD
 _HS_OSC                           00003FFE
-MPASM 5.70                   MAINPROGREM.ASM   11-12-2016  16:22:05         PAGE 11
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 _IDLOC0                           00002000
 _IDLOC1                           00002001
 _IDLOC2                           00002002
@@ -593,14 +620,14 @@ _WRT_ON                           00003FFF
 _XT_OSC                           00003FFD
 __16F877                          00000001
 boothKafal                        00000010
-exit                              00000057
-loop                              0000004B
+exit                              0000005B
 main                              00000009
-nextIfZero                        00000029
-zerokapalexit                     00000055
+nextIfZero                        0000002B
+status                            00000003
+zerokapalexit                     00000059
 
 Errors   :     0
-Warnings :     9 reported,     0 suppressed
-Messages :     7 reported,     0 suppressed
+Warnings :    13 reported,     0 suppressed
+Messages :     1 reported,     0 suppressed
 
 

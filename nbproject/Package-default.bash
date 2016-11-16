@@ -10,9 +10,9 @@ CND_CONF=default
 CND_DISTDIR=dist
 TMPDIR=build/${CND_CONF}/${IMAGE_TYPE}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/EX-01.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-OUTPUT_BASENAME=EX-01.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-PACKAGE_TOP_DIR=ex-01.x/
+OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/MPLABX.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+OUTPUT_BASENAME=MPLABX.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+PACKAGE_TOP_DIR=mplabx/
 
 # Functions
 function checkReturnCode
@@ -57,15 +57,15 @@ mkdir -p ${TMPDIR}
 
 # Copy files and create directories and links
 cd "${TOP}"
-makeDirectory ${TMPDIR}/ex-01.x/bin
+makeDirectory ${TMPDIR}/mplabx/bin
 copyFileToTmpDir "${OUTPUT_PATH}" "${TMPDIR}/${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}" 0755
 
 
 # Generate tar file
 cd "${TOP}"
-rm -f ${CND_DISTDIR}/${CND_CONF}/package/ex-01.x.tar
+rm -f ${CND_DISTDIR}/${CND_CONF}/package/mplabx.tar
 cd ${TMPDIR}
-tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/ex-01.x.tar *
+tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/mplabx.tar *
 checkReturnCode
 
 # Cleanup

@@ -1,0 +1,76 @@
+MPLINK 5.08, LINKER
+Linker Map File - Created Wed Nov 16 10:12:51 2016
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x0000b6
+                   .cinit    romdata   0x00005b    program   0x000004
+.config_2007_BUILD/DEFAULT/PRODUCTION/MAINPRO       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x00005c      
+                            0x002007    0x002007      
+            94 out of 8454 program addresses used, program memory utilization is 1%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                      Abs   0x000056    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                 BuilderH   0x000042    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                 BuilderK   0x000018    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+            CantDivByZero   0x00005b    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                    Hiluk   0x00003a    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                    Hisor   0x00000a    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                LoopBooth   0x000026    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                LoopHiluk   0x000049    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                MbigerBNo   0x000053    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+               MbigerBYes   0x000051    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                  MpahutA   0x000032    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                   MplusA   0x00002e    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+               MtoBtoLast   0x000035    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                PreCheckH   0x00003a    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                PreCheckK   0x000010    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                    Reset   0x000000    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                    Start   0x000006    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+               boothKafal   0x000010    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                     exit   0x00005b    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                     main   0x000009    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+               nextIfZero   0x00002b    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+            zerokapalexit   0x000059    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    Reset   0x000000    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                    Start   0x000006    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                     main   0x000009    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                    Hisor   0x00000a    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+               boothKafal   0x000010    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                PreCheckK   0x000010    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                 BuilderK   0x000018    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                LoopBooth   0x000026    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+               nextIfZero   0x00002b    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                   MplusA   0x00002e    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                  MpahutA   0x000032    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+               MtoBtoLast   0x000035    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                PreCheckH   0x00003a    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                    Hiluk   0x00003a    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                 BuilderH   0x000042    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                LoopHiluk   0x000049    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+               MbigerBYes   0x000051    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                MbigerBNo   0x000053    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                      Abs   0x000056    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+            zerokapalexit   0x000059    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+                     exit   0x00005b    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+            CantDivByZero   0x00005b    program     static C:\Users\db141\MPLABXProjects\MPLABX\MAINPROGREM.asm
+
+
