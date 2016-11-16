@@ -11,6 +11,8 @@
     
     org 0x00
     
+     status=003h
+    
 Reset:
     addlw 0x00
     movwf 0x40
@@ -19,10 +21,11 @@ Reset:
     movwf 0x41
     
     goto Start
-
+    
+  
   
      Start:
-     clrf 003h     
+     clrf STATUS        
      bsf 003h,0x04 
      bsf 003h,0x03
 
