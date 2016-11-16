@@ -9,9 +9,9 @@
 
 ; CONFIG
 ; __config 0xFF3A
- __CONFIG _CP_OFF & _WDT_OFF & _BODEN_OFF & _PWRTE_OFF & _HS_OSC &_WRT_ENABLE_ON & _LVP_OFF & _DEBUG_OFF & _CPD_OFF
+ __CONFIG _CP_OFF & _WDT_OFF & _BODEN_OFF & _PWRTE_OFF & _HS_OSC &_WRT_ENABLE_ON & _LVP_OFF & _DEBUG_ON & _CPD_OFF
 
-org 0xaa
+org 0x00
  
  main:
     ADDLW 8

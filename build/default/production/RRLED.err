@@ -1,0 +1,4 @@
+Warning[205] C:\USERS\DB141\MPLABXPROJECTS\EX-02.X\RRLED.ASM 14 : Found directive in column 1. (org)
+Warning[207] C:\USERS\DB141\MPLABXPROJECTS\EX-02.X\RRLED.ASM 16 : Found label after column 1. (main)
+Warning[207] C:\USERS\DB141\MPLABXPROJECTS\EX-02.X\RRLED.ASM 31 : Found label after column 1. (TIME)
+Warning[205] C:\USERS\DB141\MPLABXPROJECTS\EX-02.X\RRLED.ASM 38 : Found directive in column 1. (END)
