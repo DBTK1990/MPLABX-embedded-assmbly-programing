@@ -12,10 +12,10 @@
     org 0x00
     
 Reset:
-    addlw 0x00
+    addlw 20
     movwf 0x40
     clrw
-    addlw 0x20
+    addlw 8
     movwf 0x41
     
     goto Start
@@ -29,7 +29,7 @@ Reset:
 main:
      ;goto Hisor
      ;goto Kafal
-     ;goto boothKafal
+     goto boothKafal
      ;goto Hiluk
 Hisor:
      movf 0x36,0x00
@@ -55,8 +55,8 @@ PreCheckK:
     iorwf 0x40,1
 
     btfsc 003h,2
-    goto zerokapalexit
-
+    goto zerokapalexit ;1
+                       ;0
 BuilderK:
     
     clrw
@@ -82,15 +82,15 @@ BuilderK:
 LoopBooth:
    
     btfsc 0x42,0
-    goto nextIfZero
-    btfsc 003h,0
-    goto  MplusA
-    goto MtoBtoLast
+    goto nextIfZero ;1
+    btfsc 003h,0    ;0
+    goto  MplusA    ;0,1
+    goto MtoBtoLast ;0,0
     
     nextIfZero:
     btfsc 003h,1
-    goto MtoBtoLast
-    goto MpahutA
+    goto MtoBtoLast ;1,1
+    goto MpahutA    ;1,0
     
     MplusA:
     movfw 0x41
