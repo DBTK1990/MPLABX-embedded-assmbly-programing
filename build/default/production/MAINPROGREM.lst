@@ -1,0 +1,641 @@
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:25:18         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 
+                      00002 ; PIC16F877 Configuration Bit Settings
+                      00003 
+                      00004 ; Assembly source line config statements
+                      00005 
+                      00006 #include "p16F877.inc"
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ; Build date : Sep 13 2016
+                      00005 ;  MPASM PIC16F877 processor include
+                      00006 ; 
+                      00007 ;  (c) Copyright 1999-2016 Microchip Technology, All rights reserved
+                      00008 ;==========================================================================
+                      00009 
+                      00541         LIST
+                      00007 
+                      00008 ; CONFIG
+                      00009 ; __config 0xFFFB
+2007   3FFB           00010  __CONFIG _FOSC_EXTRC & _WDTE_OFF & _PWRTE_OFF & _CP_OFF & _BOREN_ON & _LVP_ON & _CPD_OFF & _WRT_ON
+                      00011     
+                      00012     org 0x00
+                      00013     
+Warning[207]: Found label after column 1. (status)
+  00000003            00014      status=003h
+                      00015     
+                      00016      
+                      00017      
+0000                  00018 Reset:
+0000   3E00           00019     addlw 0x00
+0001   00C0           00020     movwf 0x40
+0002   0103           00021     clrw
+0003   3E20           00022     addlw 0x20
+0004   00C1           00023     movwf 0x41
+                      00024     
+0005   2???           00025     goto Start
+                      00026     
+                      00027   
+                      00028   
+Warning[207]: Found label after column 1. (Start)
+0006                  00029      Start:
+0006   0183           00030      clrf STATUS        
+0007   1603           00031      bsf 003h,0x04 
+0008   1583           00032      bsf 003h,0x03
+                      00033 
+0009                  00034 main:
+                      00035      ;goto Hisor
+                      00036      ;goto Kafal
+                      00037      ;goto boothKafal
+0009   2???           00038      goto Hiluk
+000A                  00039 Hisor:
+000A   0836           00040      movf 0x36,0x00
+000B   0235           00041      subwf 0x35,0x00
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:25:18         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00042 
+000C   1C03           00043      btfss 003h,0
+000D   2???           00044      call Abs
+                      00045 
+000E   00B7           00046      movwf 0x37
+000F   2???           00047      goto exit
+                      00048 
+                      00049 
+0010                  00050 boothKafal:
+                      00051     
+0010                  00052 PreCheckK:
+0010   0103           00053     clrw
+0011   01C3           00054     clrf 0x43
+0012   01C2           00055     clrf 0x42
+                      00056 
+0013   1103           00057     bcf 003h,2
+                      00058     
+0014   04C1           00059     iorwf 0x41,1
+0015   04C0           00060     iorwf 0x40,1
+                      00061 
+0016   1903           00062     btfsc 003h,2
+0017   2???           00063     goto zerokapalexit
+                      00064 
+0018                  00065 BuilderK:
+                      00066     
+0018   0103           00067     clrw
+0019   1103           00068     bcf 003h,2
+                      00069     
+001A   1003           00070     bcf 003h,0
+                      00071     
+001B   3E08           00072     addlw 0x08
+001C   00B8           00073     movwf 0x38
+                      00074   
+001D   01B9           00075     clrf 0x39
+001E   1840           00076     btfsc 0x40,0
+001F   14B9           00077     bsf 0x39,1
+0020   10B9           00078     bcf 0x39,1
+                      00079     
+0021   0840           00080     movf 0x40,0
+0022   00C2           00081     movwf 0x42
+                      00082     
+0023   0941           00083     comf 0x41,0
+0024   00C0           00084     movwf 0x40
+Message[305]: Using default destination of 1 (file).
+0025   0AC0           00085     incf 0x40
+                      00086     
+0026                  00087 LoopBooth:
+                      00088    
+0026   1842           00089     btfsc 0x42,0
+0027   2???           00090     goto nextIfZero
+0028   1803           00091     btfsc 003h,0
+0029   2???           00092     goto  MplusA
+002A   2???           00093     goto MtoBtoLast
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:25:18         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00094     
+Warning[207]: Found label after column 1. (nextIfZero)
+002B                  00095     nextIfZero:
+002B   1883           00096     btfsc 003h,1
+002C   2???           00097     goto MtoBtoLast
+002D   2???           00098     goto MpahutA
+                      00099     
+Warning[207]: Found label after column 1. (MplusA)
+002E                  00100     MplusA:
+002E   0841           00101     movfw 0x41
+002F   07C3           00102     addwf 0x43,1
+0030   1003           00103     bcf 003h,0
+0031   2???           00104     goto MtoBtoLast
+                      00105     
+Warning[207]: Found label after column 1. (MpahutA)
+0032                  00106     MpahutA:
+0032   0840           00107     movfw 0x40
+0033   07C3           00108     addwf 0x43,1
+0034   1403           00109     bsf 003h,0
+                      00110     
+                      00111     
+Warning[207]: Found label after column 1. (MtoBtoLast)
+0035                  00112     MtoBtoLast:
+                      00113     
+0035   0CC3           00114     rrf 0x43,1
+0036   0CC2           00115     rrf 0x42,1
+                      00116     
+                      00117     
+0037   0BB8           00118     decfsz 0x38,1
+0038   2???           00119     goto LoopBooth
+0039   2???           00120     goto exit
+                      00121 
+                      00122     
+                      00123 
+003A                  00124 Hiluk:
+                      00125     
+003A                  00126 PreCheckH:
+003A   0103           00127     clrw
+                      00128     
+003B   1103           00129     bcf 003h,2
+                      00130     
+003C   04C1           00131     iorwf 0x41,1
+003D   1903           00132     btfsc 003h,2
+003E   2???           00133     goto zerokapalexit
+                      00134     
+003F   04C0           00135     iorwf 0x40,1
+0040   1903           00136     btfsc 003h,2
+0041   2???           00137     goto CantDivByZero
+                      00138 
+Warning[207]: Found label after column 1. (BuilderH)
+0042                  00139     BuilderH:
+                      00140     
+0042   01C3           00141     clrf 0x43
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:25:18         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0043   1103           00142     bcf 003h,2
+                      00143     
+0044   0841           00144     movfw 0x41
+0045   00C2           00145     movwf 0x42
+                      00146     
+0046   0103           00147     clrw 
+0047   3E08           00148     addlw 0x08
+0048   00C1           00149     movwf 0x41
+                      00150     
+Warning[207]: Found label after column 1. (LoopHiluk)
+0049                  00151     LoopHiluk:
+                      00152     
+0049   1003           00153     bcf 003h,0
+004A   0DC2           00154     rlf 0x42,1
+004B   0DC3           00155     rlf 0x43,1
+                      00156     
+004C   0840           00157     movfw 0x40
+004D   0243           00158     subwf 0x43,0
+                      00159     
+004E   1C03           00160     btfss 003h,0
+004F   2???           00161     goto MbigerBNo    
+0050   2???           00162     goto MbigerBYes
+                      00163     
+Warning[207]: Found label after column 1. (MbigerBYes)
+0051                  00164     MbigerBYes:
+0051   00C3           00165     movwf 0x43
+0052   1442           00166     bsf 0x42,0
+                      00167     
+Warning[207]: Found label after column 1. (MbigerBNo)
+0053                  00168     MbigerBNo:
+0053   0BC1           00169     decfsz 0x41,1
+0054   2???           00170     goto LoopHiluk
+0055   2???           00171      goto exit
+                      00172     
+                      00173 
+Warning[207]: Found label after column 1. (Abs)
+0056                  00174    Abs:
+0056   09B7           00175    comf  0x37,1
+0057   0A37           00176    incf 0x37,0
+0058   0008           00177    return
+                      00178 
+                      00179   
+                      00180 
+                      00181 
+0059                  00182 zerokapalexit:
+Warning[203]: Found opcode in column 1. (clrf)
+0059   01C3           00183 clrf 0x43
+Warning[203]: Found opcode in column 1. (clrf)
+005A   01C2           00184 clrf 0x42    
+                      00185 
+005B                  00186 CantDivByZero:
+                      00187 
+005B                  00188 exit: 
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:25:18         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+3FFB                  00189        END
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:25:18         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ACKDT                             00000005
+ACKEN                             00000004
+ACKSTAT                           00000006
+ADCON0                            0000001F
+ADCON1                            0000009F
+ADCS0                             00000006
+ADCS1                             00000007
+ADDEN                             00000003
+ADFM                              00000007
+ADIE                              00000006
+ADIF                              00000006
+ADON                              00000000
+ADRESH                            0000001E
+ADRESL                            0000009E
+Abs                               00000056
+BCLIE                             00000003
+BCLIF                             00000003
+BF                                00000000
+BRGH                              00000002
+BuilderH                          00000042
+BuilderK                          00000018
+C                                 00000000
+CCP1CON                           00000017
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1X                             00000005
+CCP1Y                             00000004
+CCP2CON                           0000001D
+CCP2IE                            00000000
+CCP2IF                            00000000
+CCP2M0                            00000000
+CCP2M1                            00000001
+CCP2M2                            00000002
+CCP2M3                            00000003
+CCP2X                             00000005
+CCP2Y                             00000004
+CCPR1                             00000015
+CCPR1H                            00000016
+CCPR1L                            00000015
+CCPR2                             0000001B
+CCPR2H                            0000001C
+CCPR2L                            0000001B
+CHS0                              00000003
+CHS1                              00000004
+CHS2                              00000005
+CKE                               00000006
+CKP                               00000004
+CREN                              00000004
+CSRC                              00000007
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:25:18         PAGE  7
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CantDivByZero                     0000005B
+D                                 00000005
+DATA_ADDRESS                      00000005
+DC                                00000001
+D_A                               00000005
+D_NOT_A                           00000005
+EEADR                             0000010D
+EEADRH                            0000010F
+EECON1                            0000018C
+EECON2                            0000018D
+EEDATA                            0000010C
+EEDATH                            0000010E
+EEIE                              00000004
+EEIF                              00000004
+EEPGD                             00000007
+F                                 00000001
+FERR                              00000002
+FSR                               00000004
+GCEN                              00000007
+GIE                               00000007
+GO                                00000002
+GO_DONE                           00000002
+GO_NOT_DONE                       00000002
+Hiluk                             0000003A
+Hisor                             0000000A
+I2C_DATA                          00000005
+I2C_READ                          00000002
+I2C_START                         00000003
+I2C_STOP                          00000004
+IBF                               00000007
+IBOV                              00000005
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+LoopBooth                         00000026
+LoopHiluk                         00000049
+MbigerBNo                         00000053
+MbigerBYes                        00000051
+MpahutA                           00000032
+MplusA                            0000002E
+MtoBtoLast                        00000035
+NOT_A                             00000005
+NOT_ADDRESS                       00000005
+NOT_BO                            00000000
+NOT_BOR                           00000000
+NOT_DONE                          00000002
+NOT_PD                            00000003
+NOT_POR                           00000001
+NOT_RBPU                          00000007
+NOT_RC8                           00000006
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:25:18         PAGE  8
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+NOT_TX8                           00000006
+NOT_W                             00000002
+NOT_WRITE                         00000002
+OBF                               00000006
+OERR                              00000001
+OPTION_REG                        00000081
+P                                 00000004
+PCFG0                             00000000
+PCFG1                             00000001
+PCFG2                             00000002
+PCFG3                             00000003
+PCL                               00000002
+PCLATH                            0000000A
+PCON                              0000008E
+PEIE                              00000006
+PEN                               00000002
+PIE1                              0000008C
+PIE2                              0000008D
+PIR1                              0000000C
+PIR2                              0000000D
+PORTA                             00000005
+PORTB                             00000006
+PORTC                             00000007
+PORTD                             00000008
+PORTE                             00000009
+PR2                               00000092
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+PSPIE                             00000007
+PSPIF                             00000007
+PSPMODE                           00000004
+PreCheckH                         0000003A
+PreCheckK                         00000010
+R                                 00000002
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RA5                               00000005
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:25:18         PAGE  9
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RBIF                              00000000
+RC0                               00000000
+RC1                               00000001
+RC2                               00000002
+RC3                               00000003
+RC4                               00000004
+RC5                               00000005
+RC6                               00000006
+RC7                               00000007
+RC8_9                             00000006
+RC9                               00000006
+RCD8                              00000000
+RCEN                              00000003
+RCIE                              00000005
+RCIF                              00000005
+RCREG                             0000001A
+RCSTA                             00000018
+RD                                00000000
+RD0                               00000000
+RD1                               00000001
+RD2                               00000002
+RD3                               00000003
+RD4                               00000004
+RD5                               00000005
+RD6                               00000006
+RD7                               00000007
+RE0                               00000000
+RE1                               00000001
+RE2                               00000002
+READ_WRITE                        00000002
+RP0                               00000005
+RP1                               00000006
+RSEN                              00000001
+RX9                               00000006
+RX9D                              00000000
+R_NOT_W                           00000002
+R_W                               00000002
+Reset                             00000000
+S                                 00000003
+SEN                               00000000
+SMP                               00000007
+SPBRG                             00000099
+SPEN                              00000007
+SREN                              00000005
+SSPADD                            00000093
+SSPBUF                            00000013
+SSPCON                            00000014
+SSPCON2                           00000091
+SSPEN                             00000005
+SSPIE                             00000003
+SSPIF                             00000003
+SSPM0                             00000000
+SSPM1                             00000001
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:25:18         PAGE 10
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SSPM2                             00000002
+SSPM3                             00000003
+SSPOV                             00000006
+SSPSTAT                           00000094
+STATUS                            00000003
+SYNC                              00000004
+Start                             00000006
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000010
+T1INSYNC                          00000002
+T1OSCEN                           00000003
+T1SYNC                            00000002
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+T2CON                             00000012
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TMR1                              0000000E
+TMR1CS                            00000001
+TMR1H                             0000000F
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1L                             0000000E
+TMR1ON                            00000000
+TMR2                              00000011
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2ON                            00000002
+TOUTPS0                           00000003
+TOUTPS1                           00000004
+TOUTPS2                           00000005
+TOUTPS3                           00000006
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:25:18         PAGE 11
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TRISB7                            00000007
+TRISC                             00000087
+TRISC0                            00000000
+TRISC1                            00000001
+TRISC2                            00000002
+TRISC3                            00000003
+TRISC4                            00000004
+TRISC5                            00000005
+TRISC6                            00000006
+TRISC7                            00000007
+TRISD                             00000088
+TRISD0                            00000000
+TRISD1                            00000001
+TRISD2                            00000002
+TRISD3                            00000003
+TRISD4                            00000004
+TRISD5                            00000005
+TRISD6                            00000006
+TRISD7                            00000007
+TRISE                             00000089
+TRISE0                            00000000
+TRISE1                            00000001
+TRISE2                            00000002
+TRMT                              00000001
+TX8_9                             00000006
+TX9                               00000006
+TX9D                              00000000
+TXD8                              00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXREG                             00000019
+TXSTA                             00000098
+UA                                00000001
+W                                 00000000
+WCOL                              00000007
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_BODEN_OFF                        00003FBF
+_BODEN_ON                         00003FFF
+_BOREN_OFF                        00003FBF
+_BOREN_ON                         00003FFF
+_CONFIG                           00002007
+_CPD_OFF                          00003FFF
+_CPD_ON                           00003EFF
+_CP_ALL                           00000FCF
+_CP_HALF                          00001FDF
+_CP_OFF                           00003FFF
+_CP_UPPER_256                     00002FEF
+_DEBUG_OFF                        00003FFF
+_DEBUG_ON                         000037FF
+MPASM 5.70                   MAINPROGREM.ASM   11-16-2016  10:25:18         PAGE 12
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_LVP_OFF                          00003F7F
+_LVP_ON                           00003FFF
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_WRT_ENABLE_OFF                   00003DFF
+_WRT_ENABLE_ON                    00003FFF
+_WRT_OFF                          00003DFF
+_WRT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F877                          00000001
+boothKafal                        00000010
+exit                              0000005B
+main                              00000009
+nextIfZero                        0000002B
+status                            00000003
+zerokapalexit                     00000059
+
+Errors   :     0
+Warnings :    13 reported,     0 suppressed
+Messages :     1 reported,     0 suppressed
+
+
