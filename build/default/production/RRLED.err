@@ -1,0 +1,15 @@
+Message[302] C:\USERS\DB141\MPLABXPROJECTS\EX-02.X\RRLED.ASM 19 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[207] C:\USERS\DB141\MPLABXPROJECTS\EX-02.X\RRLED.ASM 24 : Found label after column 1. (ACTION)
+Message[302] C:\USERS\DB141\MPLABXPROJECTS\EX-02.X\RRLED.ASM 41 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[207] C:\USERS\DB141\MPLABXPROJECTS\EX-02.X\RRLED.ASM 46 : Found label after column 1. (RLOOP)
+Message[305] C:\USERS\DB141\MPLABXPROJECTS\EX-02.X\RRLED.ASM 48 : Using default destination of 1 (file).
+Warning[207] C:\USERS\DB141\MPLABXPROJECTS\EX-02.X\RRLED.ASM 55 : Found label after column 1. (INITDELAY)
+Warning[207] C:\USERS\DB141\MPLABXPROJECTS\EX-02.X\RRLED.ASM 59 : Found label after column 1. (DELAY0)
+Warning[207] C:\USERS\DB141\MPLABXPROJECTS\EX-02.X\RRLED.ASM 64 : Found label after column 1. (INITDELAY1)
+Warning[207] C:\USERS\DB141\MPLABXPROJECTS\EX-02.X\RRLED.ASM 68 : Found label after column 1. (DELAY1)
+Warning[207] C:\USERS\DB141\MPLABXPROJECTS\EX-02.X\RRLED.ASM 75 : Found label after column 1. (BANK0)
+Warning[207] C:\USERS\DB141\MPLABXPROJECTS\EX-02.X\RRLED.ASM 80 : Found label after column 1. (BANK1)
+Warning[207] C:\USERS\DB141\MPLABXPROJECTS\EX-02.X\RRLED.ASM 85 : Found label after column 1. (delay_2.5KHZ)
+Warning[207] C:\USERS\DB141\MPLABXPROJECTS\EX-02.X\RRLED.ASM 88 : Found label after column 1. (CONT1)
+Warning[207] C:\USERS\DB141\MPLABXPROJECTS\EX-02.X\RRLED.ASM 91 : Found label after column 1. (CONT2)
+Warning[205] C:\USERS\DB141\MPLABXPROJECTS\EX-02.X\RRLED.ASM 98 : Found directive in column 1. (END)

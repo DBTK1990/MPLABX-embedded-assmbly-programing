@@ -1,23 +1,0 @@
-MPASM 5.70                            JJ.ASM   11-17-2016  2:48:24         PAGE  1
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-Warning[205]: Found directive in column 1. (END)
-                      00001 END
-MPASM 5.70                            JJ.ASM   11-17-2016  2:48:24         PAGE  2
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
-__16F877                          00000001
-__DEBUG                           
-__MPLAB_DEBUGGER_SIMULATOR        1
-
-Errors   :     0
-Warnings :     1 reported,     0 suppressed
-Messages :     0 reported,     0 suppressed
-
-
