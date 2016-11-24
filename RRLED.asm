@@ -22,10 +22,11 @@ START2:
     CLRF PORTC
     
     ACTION:
-    CALL INITDELAY   ;MY DELAY 2.5KHZ 
-    ;CALL delay_2.5KHZ
-    BSF PORTC,RC2  
-    CALL INITDELAY   ;MY DELAY 2.5KHZ
+    CALL INITDELAY.1400cyc   ;MY DELAY 1400cyc 
+    ;Call INITDELAY           ;CALL delay_2.5KHZ
+    BSF PORTC,RC2
+    ;call INITDELAY           ;CALL delay_2.5KHZ
+    CALL INITDELAY.600cyc    ;MY DELAY 600cyc
     ;CALL delay_2.5KHZ              
     BCF PORTC,RC2    
        
@@ -70,8 +71,44 @@ START1:
     GOTO DELAY1
     GOTO DELAY0
     
-
+    INITDELAY.600cyc:          ;INIT DELAY 2.5KHZ (600CYC=((14-1)~*14~)*3  WE NEED 2000CYC total )
+    movlw 0X0d                 ;30% (14-1)=DELAY0 , 14=DELAY ,3 IS THE NUMBER OF CYCLE 
+    movwf 0x40                 ;IN THE DELAY
+                               
+    DELAY0.600cyc:
+    DECFSZ 0x40,f
+    GOTO INITDELAY1.600cyc
+    RETURN
     
+    INITDELAY1.600cyc:
+    movlw 0x0e
+    movwf 0x41
+    
+    DELAY1.600cyc:
+    DECFSZ 0x41,f
+    GOTO DELAY1.600cyc
+    GOTO DELAY0.600cyc
+    
+    
+    INITDELAY.1400cyc:          ;INIT DELAY 2.5KHZ (1400CYC=21-1*28*3  WE NEED 2000CYC )
+    movlw 0X16          ;23=DELAY0 , 28=DELAY ,3 IS THE NUMBER OF CYCLE 
+    movwf 0x40          ;IN THE DELAY
+    
+    DELAY0.1400cyc:
+    DECFSZ 0x40,f
+    GOTO INITDELAY1.1400cyc
+    RETURN
+    
+    INITDELAY1.1400cyc:
+    movlw 0x14
+    movwf 0x41
+    
+    DELAY1.1400cyc:
+    DECFSZ 0x41,f
+    GOTO DELAY1.1400cyc
+    GOTO DELAY0.1400cyc
+    
+ 
     BANK0:
     BCF STATUS,RP0
     BCF STATUS,RP1
