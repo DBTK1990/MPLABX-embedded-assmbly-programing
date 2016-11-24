@@ -22,14 +22,14 @@ START2:
     CLRF PORTC
     
     ACTION:
-    CALL INITDELAY
+    CALL INITDELAY   ;MY DELAY 2.5KHZ 
     ;CALL delay_2.5KHZ
     BSF PORTC,RC2  
-    CALL INITDELAY
+    CALL INITDELAY   ;MY DELAY 2.5KHZ
     ;CALL delay_2.5KHZ              
     BCF PORTC,RC2    
        
-    GOTO ACTION
+    GOTO ACTION    ;DO LOOP
 		
     
 		
@@ -52,9 +52,9 @@ START1:
     
     
     
-    INITDELAY:
-    movlw 0X17
-    movwf 0x40
+    INITDELAY:          ;INIT DELAY 2.5KHZ (2006CYC=23*28*3  WE NEED 2000CYC )
+    movlw 0X17          ;23=DELAY0 , 28=DELAY ,3 IS THE NUMBER OF CYCLE 
+    movwf 0x40          ;IN THE DELAY
     
     DELAY0:
     DECFSZ 0x40,f
