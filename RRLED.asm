@@ -9,7 +9,7 @@ RESET:
     GOTO START2
     
     		org 0x10
-		
+
 START2:	
     CLRF 0X41
     clrf 0X42
@@ -21,16 +21,23 @@ START2:
     CALL BANK0
     CLRF PORTC
     
-    ACTION:
-    CALL INITDELAY.1400cyc   ;MY DELAY 1400cyc 
-    ;Call INITDELAY           ;CALL delay_2.5KHZ
+    
+    
+    
+    ACTION2:
+    ;CALL INITDELAY.1400cyc   ;MY DELAY 1400cyc 
+    ;Call INITDELAY           ;CALL delay_2.5KHZ=2000cyc
+    ;CALL  TIMER.I.15KHZ.333CYC
+    CALL TIMER.E.15KHZFROM1.08MHZ.74CYC
     BSF PORTC,RC2
-    ;call INITDELAY           ;CALL delay_2.5KHZ
-    CALL INITDELAY.600cyc    ;MY DELAY 600cyc
+    ;call INITDELAY           ;CALL delay_2.5KHZ=2000cyc
+    ;CALL INITDELAY.600cyc    ;MY DELAY 600cyc
     ;CALL delay_2.5KHZ              
+    ;call  TIMER.I.15KHZ.333CYC
+    CALL TIMER.E.15KHZFROM1.08MHZ.74CYC
     BCF PORTC,RC2    
        
-    GOTO ACTION    ;DO LOOP
+    GOTO ACTION2    ;DO LOOP
 		
     
 		
@@ -118,6 +125,16 @@ START1:
     BCF STATUS,RP1
     BSF STATUS,RP0
     RETURN
+    
+    BANK2:
+    BSF STATUS,RP1
+    BCF STATUS,RP0
+    RETURN 
+    
+    BANK3:
+    BSF STATUS,RP1
+    BSF STATUS,RP0
+    RETURN
    
       delay_2.5KHZ: 
       movlw 0xC8
@@ -131,5 +148,36 @@ START1:
       decfsz 0x51,F   
       goto  CONT1  
  return 
+    
+ 
+ TIMER.I.15KHZ.333CYC:
+    bcf INTCON,T0IF
+    movlw 0xc3
+    CALL BANK1
+    movwf OPTION_REG
+    CALL BANK0
+    movlw 0xEE
+    movwf TMR0
+    
+    LOOP123:
+    BTFSS INTCON,T0IF
+    GOTO LOOP123
+    RETURN
+    
+    
+    TIMER.E.15KHZFROM1.08MHZ.74CYC:
+    bcf INTCON,T0IF
+    movlw 0xE2
+    CALL BANK1
+    movwf OPTION_REG
+    CALL BANK0
+    movlw 0xFE
+    movwf TMR0
+    
+    LOOP1234:
+    BTFSS INTCON,T0IF
+    GOTO LOOP1234
+    RETURN
+    
     
 END

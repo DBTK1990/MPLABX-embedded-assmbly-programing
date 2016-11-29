@@ -1,4 +1,4 @@
-MPASM 5.70                         RRLED.ASM   11-24-2016  8:21:56         PAGE  1
+MPASM 5.70                         RRLED.ASM   11-29-2016  21:44:16         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -26,7 +26,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
 0000   2???           00009     GOTO START2
                       00010     
                       00011                 org 0x10
-                      00012                 
+                      00012 
 0010                  00013 START2: 
 0010   01C1           00014     CLRF 0X41
 0011   01C2           00015     clrf 0X42
@@ -39,108 +39,221 @@ Message[302]: Register in operand not in bank 0.  Ensure that bank bits are corr
 0015   2???           00021     CALL BANK0
 0016   0187           00022     CLRF PORTC
                       00023     
-Warning[207]: Found label after column 1. (ACTION)
-0017                  00024     ACTION:
-0017   2???           00025     CALL INITDELAY
-                      00026     ;CALL delay_2.5KHZ
-0018   1507           00027     BSF PORTC,RC2  
-0019   2???           00028     CALL INITDELAY
-                      00029     ;CALL delay_2.5KHZ              
-001A   1107           00030     BCF PORTC,RC2    
-                      00031        
-001B   2???           00032     GOTO ACTION
-                      00033                 
-                      00034     
-                      00035                 
-001C                  00036 START1:
-                      00037    
-001C   2???           00038     CALL BANK0
-001D   0188           00039     CLRF PORTD
-001E   2???           00040     CALL BANK1
-MPASM 5.70                         RRLED.ASM   11-24-2016  8:21:56         PAGE  2
+                      00024     
+                      00025     
+                      00026     
+Warning[207]: Found label after column 1. (ACTION2)
+0017                  00027     ACTION2:
+                      00028     ;CALL INITDELAY.1400cyc   ;MY DELAY 1400cyc 
+                      00029     ;Call INITDELAY           ;CALL delay_2.5KHZ=2000cyc
+                      00030     ;CALL  TIMER.I.15KHZ.333CYC
+0017   2???           00031     CALL TIMER.E.15KHZFROM1.08MHZ.74CYC
+0018   1507           00032     BSF PORTC,RC2
+                      00033     ;call INITDELAY           ;CALL delay_2.5KHZ=2000cyc
+                      00034     ;CALL INITDELAY.600cyc    ;MY DELAY 600cyc
+                      00035     ;CALL delay_2.5KHZ              
+                      00036     ;call  TIMER.I.15KHZ.333CYC
+0019   2???           00037     CALL TIMER.E.15KHZFROM1.08MHZ.74CYC
+001A   1107           00038     BCF PORTC,RC2    
+                      00039        
+001B   2???           00040     GOTO ACTION2    ;DO LOOP
+MPASM 5.70                         RRLED.ASM   11-29-2016  21:44:16         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
+                      00041                 
+                      00042     
+                      00043                 
+001C                  00044 START1:
+                      00045    
+001C   2???           00046     CALL BANK0
+001D   0188           00047     CLRF PORTD
+001E   2???           00048     CALL BANK1
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-001F   0188           00041     CLRF TRISD
-0020   2???           00042     CALL BANK0
-0021   300B           00043     MOVLW 0X0B
-0022   0088           00044     MOVWF PORTD
-                      00045     
-Warning[207]: Found label after column 1. (RLOOP)
-0023                  00046  RLOOP:
-0023   2???           00047     CALL INITDELAY
-Message[305]: Using default destination of 1 (file).
-0024   0C88           00048     RRF PORTD
-                      00049  
-0025   2???           00050     GOTO RLOOP
-                      00051               
-                      00052     
+001F   0188           00049     CLRF TRISD
+0020   2???           00050     CALL BANK0
+0021   300B           00051     MOVLW 0X0B
+0022   0088           00052     MOVWF PORTD
                       00053     
-                      00054     
+Warning[207]: Found label after column 1. (RLOOP)
+0023                  00054  RLOOP:
+0023   2???           00055     CALL INITDELAY
+Message[305]: Using default destination of 1 (file).
+0024   0C88           00056     RRF PORTD
+                      00057  
+0025   2???           00058     GOTO RLOOP
+                      00059               
+                      00060     
+                      00061     
+                      00062     
 Warning[207]: Found label after column 1. (INITDELAY)
-0026                  00055     INITDELAY:
-0026   3017           00056     movlw 0X17
-0027   00C0           00057     movwf 0x40
-                      00058     
+0026                  00063     INITDELAY:          ;INIT DELAY 2.5KHZ (2006CYC=23*28*3  WE NEED 2000CYC )
+0026   3017           00064     movlw 0X17          ;23=DELAY0 , 28=DELAY ,3 IS THE NUMBER OF CYCLE 
+0027   00C0           00065     movwf 0x40          ;IN THE DELAY
+                      00066     
 Warning[207]: Found label after column 1. (DELAY0)
-0028                  00059     DELAY0:
-0028   0BC0           00060     DECFSZ 0x40,f
-0029   2???           00061     GOTO INITDELAY1
-002A   0008           00062     RETURN
-                      00063     
+0028                  00067     DELAY0:
+0028   0BC0           00068     DECFSZ 0x40,f
+0029   2???           00069     GOTO INITDELAY1
+002A   0008           00070     RETURN
+                      00071     
 Warning[207]: Found label after column 1. (INITDELAY1)
-002B                  00064     INITDELAY1:
-002B   301C           00065     movlw 0x1C
-002C   00C1           00066     movwf 0x41
-                      00067     
+002B                  00072     INITDELAY1:
+002B   301C           00073     movlw 0x1C
+002C   00C1           00074     movwf 0x41
+                      00075     
 Warning[207]: Found label after column 1. (DELAY1)
-002D                  00068     DELAY1:
-002D   0BC1           00069     DECFSZ 0x41,f
-002E   2???           00070     GOTO DELAY1
-002F   2???           00071     GOTO DELAY0
-                      00072     
-                      00073 
-                      00074     
-Warning[207]: Found label after column 1. (BANK0)
-0030                  00075     BANK0:
-0030   1283           00076     BCF STATUS,RP0
-0031   1303           00077     BCF STATUS,RP1
-0032   0008           00078     RETURN
-                      00079     
-Warning[207]: Found label after column 1. (BANK1)
-0033                  00080     BANK1:
-0033   1303           00081     BCF STATUS,RP1
-0034   1683           00082     BSF STATUS,RP0
-0035   0008           00083     RETURN
-                      00084    
-MPASM 5.70                         RRLED.ASM   11-24-2016  8:21:56         PAGE  3
+002D                  00076     DELAY1:
+002D   0BC1           00077     DECFSZ 0x41,f
+002E   2???           00078     GOTO DELAY1
+002F   2???           00079     GOTO DELAY0
+                      00080     
+Warning[207]: Found label after column 1. (INITDELAY.600cyc)
+0030                  00081     INITDELAY.600cyc:          ;INIT DELAY 2.5KHZ (600CYC=((14-1)~*14~)*3  WE NEED 2000CYC total )
+0030   300D           00082     movlw 0X0d                 ;30% (14-1)=DELAY0 , 14=DELAY ,3 IS THE NUMBER OF CYCLE 
+0031   00C0           00083     movwf 0x40                 ;IN THE DELAY
+                      00084                                
+Warning[207]: Found label after column 1. (DELAY0.600cyc)
+MPASM 5.70                         RRLED.ASM   11-29-2016  21:44:16         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
+0032                  00085     DELAY0.600cyc:
+0032   0BC0           00086     DECFSZ 0x40,f
+0033   2???           00087     GOTO INITDELAY1.600cyc
+0034   0008           00088     RETURN
+                      00089     
+Warning[207]: Found label after column 1. (INITDELAY1.600cyc)
+0035                  00090     INITDELAY1.600cyc:
+0035   300E           00091     movlw 0x0e
+0036   00C1           00092     movwf 0x41
+                      00093     
+Warning[207]: Found label after column 1. (DELAY1.600cyc)
+0037                  00094     DELAY1.600cyc:
+0037   0BC1           00095     DECFSZ 0x41,f
+0038   2???           00096     GOTO DELAY1.600cyc
+0039   2???           00097     GOTO DELAY0.600cyc
+                      00098     
+                      00099     
+Warning[207]: Found label after column 1. (INITDELAY.1400cyc)
+003A                  00100     INITDELAY.1400cyc:          ;INIT DELAY 2.5KHZ (1400CYC=21-1*28*3  WE NEED 2000CYC )
+003A   3016           00101     movlw 0X16          ;23=DELAY0 , 28=DELAY ,3 IS THE NUMBER OF CYCLE 
+003B   00C0           00102     movwf 0x40          ;IN THE DELAY
+                      00103     
+Warning[207]: Found label after column 1. (DELAY0.1400cyc)
+003C                  00104     DELAY0.1400cyc:
+003C   0BC0           00105     DECFSZ 0x40,f
+003D   2???           00106     GOTO INITDELAY1.1400cyc
+003E   0008           00107     RETURN
+                      00108     
+Warning[207]: Found label after column 1. (INITDELAY1.1400cyc)
+003F                  00109     INITDELAY1.1400cyc:
+003F   3014           00110     movlw 0x14
+0040   00C1           00111     movwf 0x41
+                      00112     
+Warning[207]: Found label after column 1. (DELAY1.1400cyc)
+0041                  00113     DELAY1.1400cyc:
+0041   0BC1           00114     DECFSZ 0x41,f
+0042   2???           00115     GOTO DELAY1.1400cyc
+0043   2???           00116     GOTO DELAY0.1400cyc
+                      00117     
+                      00118  
+Warning[207]: Found label after column 1. (BANK0)
+0044                  00119     BANK0:
+0044   1283           00120     BCF STATUS,RP0
+0045   1303           00121     BCF STATUS,RP1
+0046   0008           00122     RETURN
+                      00123     
+Warning[207]: Found label after column 1. (BANK1)
+0047                  00124     BANK1:
+0047   1303           00125     BCF STATUS,RP1
+0048   1683           00126     BSF STATUS,RP0
+0049   0008           00127     RETURN
+                      00128     
+Warning[207]: Found label after column 1. (BANK2)
+MPASM 5.70                         RRLED.ASM   11-29-2016  21:44:16         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+004A                  00129     BANK2:
+004A   1703           00130     BSF STATUS,RP1
+004B   1283           00131     BCF STATUS,RP0
+004C   0008           00132     RETURN 
+                      00133     
+Warning[207]: Found label after column 1. (BANK3)
+004D                  00134     BANK3:
+004D   1703           00135     BSF STATUS,RP1
+004E   1683           00136     BSF STATUS,RP0
+004F   0008           00137     RETURN
+                      00138    
 Warning[207]: Found label after column 1. (delay_2.5KHZ)
-0036                  00085       delay_2.5KHZ: 
-0036   30C8           00086       movlw 0xC8
-0037   00D1           00087       movwf 0x51   
+0050                  00139       delay_2.5KHZ: 
+0050   30C8           00140       movlw 0xC8
+0051   00D1           00141       movwf 0x51   
 Warning[207]: Found label after column 1. (CONT1)
-0038                  00088       CONT1: 
-0038   3002           00089       movlw 0x02  
-0039   00D2           00090       movwf 0x52   
+0052                  00142       CONT1: 
+0052   3002           00143       movlw 0x02  
+0053   00D2           00144       movwf 0x52   
 Warning[207]: Found label after column 1. (CONT2)
-003A                  00091       CONT2: 
-003A   0BD2           00092       decfsz 0x52,F  
-003B   2???           00093       goto  CONT2  
-003C   0BD1           00094       decfsz 0x51,F   
-003D   2???           00095       goto  CONT1  
-003E   0008           00096  return 
-                      00097     
+0054                  00145       CONT2: 
+0054   0BD2           00146       decfsz 0x52,F  
+0055   2???           00147       goto  CONT2  
+0056   0BD1           00148       decfsz 0x51,F   
+0057   2???           00149       goto  CONT1  
+0058   0008           00150  return 
+                      00151     
+                      00152  
+Warning[207]: Found label after column 1. (TIMER.I.15KHZ.333CYC)
+0059                  00153  TIMER.I.15KHZ.333CYC:
+0059   110B           00154     bcf INTCON,T0IF
+005A   30C3           00155     movlw 0xc3
+005B   2???           00156     CALL BANK1
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+005C   0081           00157     movwf OPTION_REG
+005D   2???           00158     CALL BANK0
+005E   30EE           00159     movlw 0xEE
+005F   0081           00160     movwf TMR0
+                      00161     
+Warning[207]: Found label after column 1. (LOOP123)
+0060                  00162     LOOP123:
+0060   1D0B           00163     BTFSS INTCON,T0IF
+0061   2???           00164     GOTO LOOP123
+0062   0008           00165     RETURN
+                      00166     
+                      00167     
+Warning[207]: Found label after column 1. (TIMER.E.15KHZFROM1.08MHZ.74CYC)
+0063                  00168     TIMER.E.15KHZFROM1.08MHZ.74CYC:
+0063   110B           00169     bcf INTCON,T0IF
+0064   30E2           00170     movlw 0xE2
+0065   2???           00171     CALL BANK1
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0066   0081           00172     movwf OPTION_REG
+MPASM 5.70                         RRLED.ASM   11-29-2016  21:44:16         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0067   2???           00173     CALL BANK0
+0068   30FE           00174     movlw 0xFE
+0069   0081           00175     movwf TMR0
+                      00176     
+Warning[207]: Found label after column 1. (LOOP1234)
+006A                  00177     LOOP1234:
+006A   1D0B           00178     BTFSS INTCON,T0IF
+006B   2???           00179     GOTO LOOP1234
+006C   0008           00180     RETURN
+                      00181     
+                      00182     
 Warning[205]: Found directive in column 1. (END)
-373A                  00098 END
-MPASM 5.70                         RRLED.ASM   11-24-2016  8:21:56         PAGE  4
+373A                  00183 END
+MPASM 5.70                         RRLED.ASM   11-29-2016  21:44:16         PAGE  6
 
 
 SYMBOL TABLE
@@ -149,7 +262,7 @@ SYMBOL TABLE
 ACKDT                             00000005
 ACKEN                             00000004
 ACKSTAT                           00000006
-ACTION                            00000017
+ACTION2                           00000017
 ADCON0                            0000001F
 ADCON1                            0000009F
 ADCS0                             00000006
@@ -161,8 +274,10 @@ ADIF                              00000006
 ADON                              00000000
 ADRESH                            0000001E
 ADRESL                            0000009E
-BANK0                             00000030
-BANK1                             00000033
+BANK0                             00000044
+BANK1                             00000047
+BANK2                             0000004A
+BANK3                             0000004D
 BCLIE                             00000003
 BCLIF                             00000003
 BF                                00000000
@@ -197,21 +312,25 @@ CHS1                              00000004
 CHS2                              00000005
 CKE                               00000006
 CKP                               00000004
-CONT1                             00000038
-CONT2                             0000003A
-MPASM 5.70                         RRLED.ASM   11-24-2016  8:21:56         PAGE  5
+MPASM 5.70                         RRLED.ASM   11-29-2016  21:44:16         PAGE  7
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+CONT1                             00000052
+CONT2                             00000054
 CREN                              00000004
 CSRC                              00000007
 D                                 00000005
 DATA_ADDRESS                      00000005
 DC                                00000001
 DELAY0                            00000028
+DELAY0.1400cyc                    0000003C
+DELAY0.600cyc                     00000032
 DELAY1                            0000002D
+DELAY1.1400cyc                    00000041
+DELAY1.600cyc                     00000037
 D_A                               00000005
 D_NOT_A                           00000005
 EEADR                             0000010D
@@ -239,13 +358,25 @@ IBF                               00000007
 IBOV                              00000005
 INDF                              00000000
 INITDELAY                         00000026
+INITDELAY.1400cyc                 0000003A
+INITDELAY.600cyc                  00000030
 INITDELAY1                        0000002B
+INITDELAY1.1400cyc                0000003F
+INITDELAY1.600cyc                 00000035
 INTCON                            0000000B
 INTE                              00000004
 INTEDG                            00000006
 INTF                              00000001
 IRP                               00000007
+LOOP123                           00000060
+LOOP1234                          0000006A
 NOT_A                             00000005
+MPASM 5.70                         RRLED.ASM   11-29-2016  21:44:16         PAGE  8
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 NOT_ADDRESS                       00000005
 NOT_BO                            00000000
 NOT_BOR                           00000000
@@ -258,12 +389,6 @@ NOT_T1SYNC                        00000002
 NOT_TO                            00000004
 NOT_TX8                           00000006
 NOT_W                             00000002
-MPASM 5.70                         RRLED.ASM   11-24-2016  8:21:56         PAGE  6
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 NOT_WRITE                         00000002
 OBF                               00000006
 OERR                              00000001
@@ -305,6 +430,12 @@ RA5                               00000005
 RB0                               00000000
 RB1                               00000001
 RB2                               00000002
+MPASM 5.70                         RRLED.ASM   11-29-2016  21:44:16         PAGE  9
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 RB3                               00000003
 RB4                               00000004
 RB5                               00000005
@@ -317,12 +448,6 @@ RC1                               00000001
 RC2                               00000002
 RC3                               00000003
 RC4                               00000004
-MPASM 5.70                         RRLED.ASM   11-24-2016  8:21:56         PAGE  7
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 RC5                               00000005
 RC6                               00000006
 RC7                               00000007
@@ -364,6 +489,12 @@ SPEN                              00000007
 SREN                              00000005
 SSPADD                            00000093
 SSPBUF                            00000013
+MPASM 5.70                         RRLED.ASM   11-29-2016  21:44:16         PAGE 10
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 SSPCON                            00000014
 SSPCON2                           00000091
 SSPEN                             00000005
@@ -376,12 +507,6 @@ SSPM3                             00000003
 SSPOV                             00000006
 SSPSTAT                           00000094
 START1                            0000001C
-MPASM 5.70                         RRLED.ASM   11-24-2016  8:21:56         PAGE  8
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 START2                            00000010
 STATUS                            00000003
 SYNC                              00000004
@@ -398,6 +523,8 @@ T1SYNC                            00000002
 T2CKPS0                           00000000
 T2CKPS1                           00000001
 T2CON                             00000012
+TIMER.E.15KHZFROM1.08MHZ.74CYC    00000063
+TIMER.I.15KHZ.333CYC              00000059
 TMR0                              00000001
 TMR0IE                            00000005
 TMR0IF                            00000002
@@ -421,6 +548,12 @@ TRISA0                            00000000
 TRISA1                            00000001
 TRISA2                            00000002
 TRISA3                            00000003
+MPASM 5.70                         RRLED.ASM   11-29-2016  21:44:16         PAGE 11
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 TRISA4                            00000004
 TRISA5                            00000005
 TRISB                             00000086
@@ -435,12 +568,6 @@ TRISB7                            00000007
 TRISC                             00000087
 TRISC0                            00000000
 TRISC1                            00000001
-MPASM 5.70                         RRLED.ASM   11-24-2016  8:21:56         PAGE  9
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 TRISC2                            00000002
 TRISC3                            00000003
 TRISC4                            00000004
@@ -480,6 +607,12 @@ Z                                 00000002
 _BODEN_OFF                        00003FBF
 _BODEN_ON                         00003FFF
 _BOREN_OFF                        00003FBF
+MPASM 5.70                         RRLED.ASM   11-29-2016  21:44:16         PAGE 12
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 _BOREN_ON                         00003FFF
 _CONFIG                           00002007
 _CPD_OFF                          00003FFF
@@ -494,12 +627,6 @@ _DEVID1                           00002006
 _FOSC_EXTRC                       00003FFF
 _FOSC_HS                          00003FFE
 _FOSC_LP                          00003FFC
-MPASM 5.70                         RRLED.ASM   11-24-2016  8:21:56         PAGE 10
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 _FOSC_XT                          00003FFD
 _HS_OSC                           00003FFE
 _IDLOC0                           00002000
@@ -524,10 +651,10 @@ _XT_OSC                           00003FFD
 __16F877                          00000001
 __DEBUG                           
 __MPLAB_DEBUGGER_SIMULATOR        1
-delay_2.5KHZ                      00000036
+delay_2.5KHZ                      00000050
 
 Errors   :     0
-Warnings :    12 reported,     0 suppressed
-Messages :     3 reported,     0 suppressed
+Warnings :    26 reported,     0 suppressed
+Messages :     5 reported,     0 suppressed
 
 

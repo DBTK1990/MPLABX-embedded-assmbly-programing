@@ -1,12 +1,12 @@
 MPLINK 5.08, LINKER
-Linker Map File - Created Thu Nov 24 08:12:29 2016
+Linker Map File - Created Tue Nov 29 21:40:34 2016
 
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
                 ---------  ---------  ---------  ---------  ---------
                    .org_0       code   0x000000    program   0x000002
                    .cinit    romdata   0x000001    program   0x000004
-                   .org_1       code   0x000010    program   0x00005e
+                   .org_1       code   0x000010    program   0x0000ba
 .config_2007_BUILD/DEFAULT/PRODUCTION/RRLED.O       code   0x002007    program   0x000002
 
 
@@ -15,29 +15,43 @@ Linker Map File - Created Thu Nov 24 08:12:29 2016
                                Start         End      
                            ---------   ---------      
                             0x000000    0x000002      
-                            0x000010    0x00003e      
+                            0x000010    0x00006c      
                             0x002007    0x002007      
-            51 out of 8454 program addresses used, program memory utilization is 0%
+            97 out of 8454 program addresses used, program memory utilization is 1%
 
 
 
                               Symbols - Sorted by Name
                      Name    Address   Location    Storage File                     
                 ---------  ---------  ---------  --------- ---------                
-                   ACTION   0x000017    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
-                    BANK0   0x000030    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
-                    BANK1   0x000033    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
-                    CONT1   0x000038    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
-                    CONT2   0x00003a    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+                  ACTION2   0x000017    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+                    BANK0   0x000044    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+                    BANK1   0x000047    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+                    BANK2   0x00004a    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+                    BANK3   0x00004d    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+                    CONT1   0x000052    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+                    CONT2   0x000054    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
                    DELAY0   0x000028    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+           DELAY0.1400cyc   0x00003c    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+            DELAY0.600cyc   0x000032    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
                    DELAY1   0x00002d    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+           DELAY1.1400cyc   0x000041    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+            DELAY1.600cyc   0x000037    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
                 INITDELAY   0x000026    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+        INITDELAY.1400cyc   0x00003a    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+         INITDELAY.600cyc   0x000030    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
                INITDELAY1   0x00002b    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+       INITDELAY1.1400cyc   0x00003f    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+        INITDELAY1.600cyc   0x000035    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+                  LOOP123   0x000060    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+                 LOOP1234   0x00006a    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
                     RESET   0x000000    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
                     RLOOP   0x000023    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
                    START1   0x00001c    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
                    START2   0x000010    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
-             delay_2.5KHZ   0x000036    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+TIMER.E.15KHZFROM1.08MHZ.74CYC   0x000063    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+     TIMER.I.15KHZ.333CYC   0x000059    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+             delay_2.5KHZ   0x000050    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
 
 
 
@@ -46,17 +60,31 @@ Linker Map File - Created Thu Nov 24 08:12:29 2016
                 ---------  ---------  ---------  --------- ---------                
                     RESET   0x000000    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
                    START2   0x000010    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
-                   ACTION   0x000017    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+                  ACTION2   0x000017    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
                    START1   0x00001c    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
                     RLOOP   0x000023    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
                 INITDELAY   0x000026    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
                    DELAY0   0x000028    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
                INITDELAY1   0x00002b    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
                    DELAY1   0x00002d    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
-                    BANK0   0x000030    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
-                    BANK1   0x000033    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
-             delay_2.5KHZ   0x000036    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
-                    CONT1   0x000038    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
-                    CONT2   0x00003a    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+         INITDELAY.600cyc   0x000030    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+            DELAY0.600cyc   0x000032    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+        INITDELAY1.600cyc   0x000035    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+            DELAY1.600cyc   0x000037    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+        INITDELAY.1400cyc   0x00003a    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+           DELAY0.1400cyc   0x00003c    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+       INITDELAY1.1400cyc   0x00003f    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+           DELAY1.1400cyc   0x000041    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+                    BANK0   0x000044    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+                    BANK1   0x000047    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+                    BANK2   0x00004a    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+                    BANK3   0x00004d    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+             delay_2.5KHZ   0x000050    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+                    CONT1   0x000052    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+                    CONT2   0x000054    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+     TIMER.I.15KHZ.333CYC   0x000059    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+                  LOOP123   0x000060    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+TIMER.E.15KHZFROM1.08MHZ.74CYC   0x000063    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
+                 LOOP1234   0x00006a    program     static C:\Users\db141\MPLABXProjects\EX-02.X\RRLED.asm
 
 
