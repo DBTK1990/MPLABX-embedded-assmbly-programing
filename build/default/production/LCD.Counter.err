@@ -1,0 +1,7 @@
+Error[113]   C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD.COUNTER.ASM 47 : Symbol not previously defined (printclock)
+Message[305] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD.COUNTER.ASM 56 : Using default destination of 1 (file).
+Message[305] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD.COUNTER.ASM 71 : Using default destination of 1 (file).
+Warning[203] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD.COUNTER.ASM 73 : Found opcode in column 1. (goto)
+Message[305] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD.COUNTER.ASM 85 : Using default destination of 1 (file).
+Warning[203] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD.COUNTER.ASM 87 : Found opcode in column 1. (goto)
+Message[302] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD.COUNTER.ASM 96 : Register in operand not in bank 0.  Ensure that bank bits are correct.
