@@ -1,8 +1,7 @@
 LIST 	P=PIC16F877
 #include <P16f877.inc>
 
-LCD CODE 0x120
-
+LCD CODE 0x9F
 INITDisplay:
    
    ;CALL BANK1 

@@ -1,4 +1,4 @@
-MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE  1
+MPASM 5.70                   BCD_ADAPTER.ASM   12-21-2016  0:22:53         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -57,7 +57,7 @@ Message[305]: Using default destination of 1 (file).
 0071                  00040 BCD.2.DIG:
                       00041                                                              
                       00042                              
-MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE  2
+MPASM 5.70                   BCD_ADAPTER.ASM   12-21-2016  0:22:53         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -116,7 +116,7 @@ Warning[205]: Found directive in column 1. (GLOBAL)
 0089   1103           00091     bcf STATUS,2
                       00092     
 008A   0841           00093     movfw 0x41
-MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE  3
+MPASM 5.70                   BCD_ADAPTER.ASM   12-21-2016  0:22:53         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -164,7 +164,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00133                      
                       00134 
                       00135     END
-MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE  4
+MPASM 5.70                   BCD_ADAPTER.ASM   12-21-2016  0:22:53         PAGE  4
 
 
 SYMBOL TABLE
@@ -223,7 +223,7 @@ CKE                               00000006
 CKP                               00000004
 CREN                              00000004
 CSRC                              00000007
-MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE  5
+MPASM 5.70                   BCD_ADAPTER.ASM   12-21-2016  0:22:53         PAGE  5
 
 
 SYMBOL TABLE
@@ -282,7 +282,7 @@ NOT_RBPU                          00000007
 NOT_RC8                           00000006
 NOT_T1SYNC                        00000002
 NOT_TO                            00000004
-MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE  6
+MPASM 5.70                   BCD_ADAPTER.ASM   12-21-2016  0:22:53         PAGE  6
 
 
 SYMBOL TABLE
@@ -341,7 +341,7 @@ RBIE                              00000003
 RBIF                              00000000
 RC0                               00000000
 RC1                               00000001
-MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE  7
+MPASM 5.70                   BCD_ADAPTER.ASM   12-21-2016  0:22:53         PAGE  7
 
 
 SYMBOL TABLE
@@ -400,7 +400,7 @@ SSPM2                             00000002
 SSPM3                             00000003
 SSPOV                             00000006
 SSPSTAT                           00000094
-MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE  8
+MPASM 5.70                   BCD_ADAPTER.ASM   12-21-2016  0:22:53         PAGE  8
 
 
 SYMBOL TABLE
@@ -459,7 +459,7 @@ TRISC                             00000087
 TRISC0                            00000000
 TRISC1                            00000001
 TRISC2                            00000002
-MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE  9
+MPASM 5.70                   BCD_ADAPTER.ASM   12-21-2016  0:22:53         PAGE  9
 
 
 SYMBOL TABLE
@@ -518,7 +518,7 @@ _DEVID1                           00002006
 _FOSC_EXTRC                       00003FFF
 _FOSC_HS                          00003FFE
 _FOSC_LP                          00003FFC
-MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE 10
+MPASM 5.70                   BCD_ADAPTER.ASM   12-21-2016  0:22:53         PAGE 10
 
 
 SYMBOL TABLE

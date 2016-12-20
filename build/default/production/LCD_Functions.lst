@@ -1,4 +1,4 @@
-MPASM 5.70                 LCD_FUNCTIONS.ASM   12-20-2016  22:40:31         PAGE  1
+MPASM 5.70                 LCD_FUNCTIONS.ASM   12-21-2016  0:22:53         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -18,295 +18,294 @@ Warning[205]: Found directive in column 1. (LIST)
                       00009 
                       00541         LIST
                       00003 
-                      00004 LCD CODE 0x120
-                      00005 
-0120                  00006 INITDisplay:
-                      00007    
-                      00008    ;CALL BANK1 
-0120   1683 1303      00009    BANKSEL TRISD                  
+                      00004 LCD CODE 0x9F
+009F                  00005 INITDisplay:
+                      00006    
+                      00007    ;CALL BANK1 
+009F   1683 1303      00008    BANKSEL TRISD                  
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0122   0188           00010    CLRF TRISD                  
-0123   3006           00011    MOVLW 0X06                  
+00A1   0188           00009    CLRF TRISD                  
+00A2   3006           00010    MOVLW 0X06                  
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0124   009F           00012    MOVWF ADCON1                ;SET ALL TO D
+00A3   009F           00011    MOVWF ADCON1                ;SET ALL TO D
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0125   0189           00013    CLRF TRISE
-                      00014    ;CALL BANK0
-0126   1283 1303      00015    BANKSEL PORTD
-0128   3030           00016    MOVLW 0X30                  ;RESET SCREEN
-                      00017    
-0129   2???           00018    CALL FUNCTION.LCD.WRITE
-012A   2???           00019    CALL INITDELAY
-012B   3030           00020    MOVLW 0X30
-                      00021    
-012C   2???           00022    CALL FUNCTION.LCD.WRITE
-012D   2???           00023    CALL INITDELAY
-012E   3030           00024    MOVLW 0X30
-                      00025    
-012F   2???           00026    CALL FUNCTION.LCD.WRITE
-0130   2???           00027    CALL INITDELAY              ;END SCREEN RESET
-0131   3038           00028    MOVLW 0X38                  ;SET CONFIG. FOR SCREEN
-                      00029    
-0132   2???           00030    CALL FUNCTION.LCD.WRITE
-0133   300C           00031    MOVLW 0X0C                  ;DISPLAY=ON BIT.D=1
-                      00032                     
-0134   2???           00033    CALL FUNCTION.LCD.WRITE
-0135   3001           00034    MOVLW 0X01                  ;DISPLAY CLEAR
-                      00035    
-0136   2???           00036    CALL FUNCTION.LCD.WRITE 
-0137   3006           00037    MOVLW 0X06                  ;DISPLAY SET L.T.R
-                      00038    
-0138   2???           00039    CALL FUNCTION.LCD.WRITE
-MPASM 5.70                 LCD_FUNCTIONS.ASM   12-20-2016  22:40:31         PAGE  2
+00A4   0189           00012    CLRF TRISE
+                      00013    ;CALL BANK0
+00A5   1283 1303      00014    BANKSEL PORTD
+00A7   3030           00015    MOVLW 0X30                  ;RESET SCREEN
+                      00016    
+00A8   2???           00017    CALL FUNCTION.LCD.WRITE
+00A9   2???           00018    CALL INITDELAY
+00AA   3030           00019    MOVLW 0X30
+                      00020    
+00AB   2???           00021    CALL FUNCTION.LCD.WRITE
+00AC   2???           00022    CALL INITDELAY
+00AD   3030           00023    MOVLW 0X30
+                      00024    
+00AE   2???           00025    CALL FUNCTION.LCD.WRITE
+00AF   2???           00026    CALL INITDELAY              ;END SCREEN RESET
+00B0   3038           00027    MOVLW 0X38                  ;SET CONFIG. FOR SCREEN
+                      00028    
+00B1   2???           00029    CALL FUNCTION.LCD.WRITE
+00B2   300C           00030    MOVLW 0X0C                  ;DISPLAY=ON BIT.D=1
+                      00031                     
+00B3   2???           00032    CALL FUNCTION.LCD.WRITE
+00B4   3001           00033    MOVLW 0X01                  ;DISPLAY CLEAR
+                      00034    
+00B5   2???           00035    CALL FUNCTION.LCD.WRITE 
+00B6   3006           00036    MOVLW 0X06                  ;DISPLAY SET L.T.R
+                      00037    
+00B7   2???           00038    CALL FUNCTION.LCD.WRITE
+                      00039    
+MPASM 5.70                 LCD_FUNCTIONS.ASM   12-21-2016  0:22:53         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-                      00040    
-0139   0008           00041    RETURN
-                      00042 
-  0000                00043  GLOBAL INITDisplay
-                      00044    
-013A                  00045 FUNCTION.LCD.WRITE:            ;FUNCTION WRITE TO LCD
-                      00046 
-013A   0088           00047  MOVWF PORTD   
-013B   1089           00048  BCF PORTE,RE1
-013C   1409           00049  BSF PORTE,RE0
-013D   2???           00050  CALL INITDELAY
-013E   1009           00051  BCF PORTE,RE0
-                      00052     
-013F   0008           00053     RETURN
-                      00054 
-                      00055  
-                      00056     
-0140                  00057 VAL.LCD.WRITE:                 ;VAL WRITE ON SCREEN
-                      00058 
-0140   0088           00059  MOVWF PORTD   
-0141   1489           00060  BSF PORTE,RE1
-0142   1409           00061  BSF PORTE,RE0
-0143   2???           00062  CALL INITDELAY
-0144   1009           00063  BCF PORTE,RE0
-                      00064     
-0145   0008           00065    RETURN    
-                      00066 
-                      00067 ;-----------------255.function------------------------------;   
-0146                  00068 PRINT.255:
-                      00069         
-0146   3086           00070    MOVLW 0X86
-0147   2???           00071    CALL FUNCTION.LCD.WRITE
-0148   2???           00072    CALL ASCII.NUMBER.255
-                      00073    
-0149   3003           00074    MOVLW 0X03
-014A   00C8           00075    MOVWF 0X48
-                      00076    
-014B   3052           00077    MOVLW 0X52
-014C   0084           00078    MOVWF FSR
-                      00079    
-014D                  00080 LOOP.3:   
-                      00081    
-014D   0800           00082    MOVFW INDF
-                      00083    
-014E   2???           00084    CALL VAL.LCD.WRITE
-014F   0384           00085    DECF FSR,F
-0150   0BC8           00086    DECFSZ 0X48,F
-0151   2???           00087    GOTO LOOP.3
-                      00088    
-0152   0008           00089    RETURN   
-                      00090 
-  0000                00091  GLOBAL PRINT.255   
-                      00092 
-MPASM 5.70                 LCD_FUNCTIONS.ASM   12-20-2016  22:40:31         PAGE  3
+00B8   0008           00040    RETURN
+                      00041 
+  0000                00042  GLOBAL INITDisplay
+                      00043    
+00B9                  00044 FUNCTION.LCD.WRITE:            ;FUNCTION WRITE TO LCD
+                      00045 
+00B9   0088           00046  MOVWF PORTD   
+00BA   1089           00047  BCF PORTE,RE1
+00BB   1409           00048  BSF PORTE,RE0
+00BC   2???           00049  CALL INITDELAY
+00BD   1009           00050  BCF PORTE,RE0
+                      00051     
+00BE   0008           00052     RETURN
+                      00053 
+                      00054  
+                      00055     
+00BF                  00056 VAL.LCD.WRITE:                 ;VAL WRITE ON SCREEN
+                      00057 
+00BF   0088           00058  MOVWF PORTD   
+00C0   1489           00059  BSF PORTE,RE1
+00C1   1409           00060  BSF PORTE,RE0
+00C2   2???           00061  CALL INITDELAY
+00C3   1009           00062  BCF PORTE,RE0
+                      00063     
+00C4   0008           00064    RETURN    
+                      00065 
+                      00066 ;-----------------255.function------------------------------;   
+00C5                  00067 PRINT.255:
+                      00068         
+00C5   3086           00069    MOVLW 0X86
+00C6   2???           00070    CALL FUNCTION.LCD.WRITE
+00C7   2???           00071    CALL ASCII.NUMBER.255
+                      00072    
+00C8   3003           00073    MOVLW 0X03
+00C9   00C8           00074    MOVWF 0X48
+                      00075    
+00CA   3052           00076    MOVLW 0X52
+00CB   0084           00077    MOVWF FSR
+                      00078    
+00CC                  00079 LOOP.3:   
+                      00080    
+00CC   0800           00081    MOVFW INDF
+                      00082    
+00CD   2???           00083    CALL VAL.LCD.WRITE
+00CE   0384           00084    DECF FSR,F
+00CF   0BC8           00085    DECFSZ 0X48,F
+00D0   2???           00086    GOTO LOOP.3
+                      00087    
+00D1   0008           00088    RETURN   
+                      00089 
+  0000                00090  GLOBAL PRINT.255   
+                      00091 
+00D2                  00092 ASCII.NUMBER.255:
+MPASM 5.70                 LCD_FUNCTIONS.ASM   12-21-2016  0:22:53         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0153                  00093 ASCII.NUMBER.255:
-                      00094    
-0153   3003           00095    MOVLW 0X03
-0154   00C8           00096    MOVWF 0X48
-                      00097    
-0155   3052           00098    MOVLW 0X52
-0156   0084           00099    MOVWF FSR
-                      00100    
-0157   3030           00101    MOVLW 0X30
-                      00102    
-0158                  00103 LOOP.ASCII.255:
-                      00104    
-0158   0780           00105    ADDWF INDF,F    
-0159   0384           00106    DECF FSR,F
-015A   0BC8           00107    DECFSZ 0X48,F
-015B   2???           00108    GOTO LOOP.ASCII.255
-                      00109    
-015C   0008           00110    RETURN
-                      00111 ;-----------------TIME.FUNCTION-------------------------------;
+                      00093    
+00D2   3003           00094    MOVLW 0X03
+00D3   00C8           00095    MOVWF 0X48
+                      00096    
+00D4   3052           00097    MOVLW 0X52
+00D5   0084           00098    MOVWF FSR
+                      00099    
+00D6   3030           00100    MOVLW 0X30
+                      00101    
+00D7                  00102 LOOP.ASCII.255:
+                      00103    
+00D7   0780           00104    ADDWF INDF,F    
+00D8   0384           00105    DECF FSR,F
+00D9   0BC8           00106    DECFSZ 0X48,F
+00DA   2???           00107    GOTO LOOP.ASCII.255
+                      00108    
+00DB   0008           00109    RETURN
+                      00110 ;-----------------TIME.FUNCTION-------------------------------;
 Warning[207]: Found label after column 1. (FORMAT.TIME)
-015D                  00112  FORMAT.TIME:
-                      00113           
-015D   3084           00114    MOVLW 0X84
-015E   2???           00115    CALL FUNCTION.LCD.WRITE 
-                      00116    
-015F   3048           00117    MOVLW 0x48
-0160   2???           00118    CALL VAL.LCD.WRITE
-0161   3048           00119    MOVLW 0x48
-0162   2???           00120    CALL VAL.LCD.WRITE
-                      00121    
-0163   303A           00122    MOVLW 0x3A
-0164   2???           00123    CALL VAL.LCD.WRITE
-                      00124    
-0165   304D           00125    MOVLW 0x4D
-0166   2???           00126    CALL VAL.LCD.WRITE
-0167   304D           00127     MOVLW 0x4D
-0168   2???           00128    CALL VAL.LCD.WRITE
-                      00129    
-0169   303A           00130    MOVLW 0x3A
-016A   2???           00131    CALL VAL.LCD.WRITE
-                      00132    
-016B   3053           00133    MOVLW 0x53
-016C   2???           00134    CALL VAL.LCD.WRITE
-016D   3053           00135    MOVLW 0x53
-016E   2???           00136    CALL VAL.LCD.WRITE
-                      00137 
-016F   30C4           00138    MOVLW 0xC4
-0170   2???           00139    CALL FUNCTION.LCD.WRITE
-                      00140 
-0171   3030           00141    MOVLW 0x30
-0172   2???           00142    CALL VAL.LCD.WRITE
-0173   3030           00143    MOVLW 0x30
-0174   2???           00144    CALL VAL.LCD.WRITE
-MPASM 5.70                 LCD_FUNCTIONS.ASM   12-20-2016  22:40:31         PAGE  4
+00DC                  00111  FORMAT.TIME:
+                      00112           
+00DC   3084           00113    MOVLW 0X84
+00DD   2???           00114    CALL FUNCTION.LCD.WRITE 
+                      00115    
+00DE   3048           00116    MOVLW 0x48
+00DF   2???           00117    CALL VAL.LCD.WRITE
+00E0   3048           00118    MOVLW 0x48
+00E1   2???           00119    CALL VAL.LCD.WRITE
+                      00120    
+00E2   303A           00121    MOVLW 0x3A
+00E3   2???           00122    CALL VAL.LCD.WRITE
+                      00123    
+00E4   304D           00124    MOVLW 0x4D
+00E5   2???           00125    CALL VAL.LCD.WRITE
+00E6   304D           00126     MOVLW 0x4D
+00E7   2???           00127    CALL VAL.LCD.WRITE
+                      00128    
+00E8   303A           00129    MOVLW 0x3A
+00E9   2???           00130    CALL VAL.LCD.WRITE
+                      00131    
+00EA   3053           00132    MOVLW 0x53
+00EB   2???           00133    CALL VAL.LCD.WRITE
+00EC   3053           00134    MOVLW 0x53
+00ED   2???           00135    CALL VAL.LCD.WRITE
+                      00136 
+00EE   30C4           00137    MOVLW 0xC4
+00EF   2???           00138    CALL FUNCTION.LCD.WRITE
+                      00139 
+00F0   3030           00140    MOVLW 0x30
+00F1   2???           00141    CALL VAL.LCD.WRITE
+00F2   3030           00142    MOVLW 0x30
+00F3   2???           00143    CALL VAL.LCD.WRITE
+                      00144 
+MPASM 5.70                 LCD_FUNCTIONS.ASM   12-21-2016  0:22:53         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-                      00145 
-0175   303A           00146    MOVLW 0x3A
-0176   2???           00147    CALL VAL.LCD.WRITE
-                      00148    
-0177   3030           00149    MOVLW 0x30
-0178   2???           00150    CALL VAL.LCD.WRITE
-0179   3030           00151    MOVLW 0x30
-017A   2???           00152    CALL VAL.LCD.WRITE
-                      00153 
-017B   303A           00154    MOVLW 0x3A
-017C   2???           00155    CALL VAL.LCD.WRITE
-                      00156 
-017D   3030           00157    MOVLW 0x30
-017E   2???           00158    CALL VAL.LCD.WRITE
-017F   3030           00159    MOVLW 0x30
-0180   2???           00160    CALL VAL.LCD.WRITE
-                      00161    
-0181   0008           00162    RETURN
-                      00163 
-  0000                00164    GLOBAL FORMAT.TIME   
-                      00165    
-0182                  00166 PRINT.TIME:
-                      00167     
-0182   2???           00168     CALL FUNCTION.LCD.WRITE
-0183   2???           00169     CALL ASCII.NUMBER.TIME
-                      00170     
-0184   3002           00171     MOVLW 0X02
-0185   00C8           00172     MOVWF 0X48
-                      00173     
-0186   3051           00174     MOVLW 0X51
-0187   0084           00175     MOVWF FSR
-                      00176     
+00F4   303A           00145    MOVLW 0x3A
+00F5   2???           00146    CALL VAL.LCD.WRITE
+                      00147    
+00F6   3030           00148    MOVLW 0x30
+00F7   2???           00149    CALL VAL.LCD.WRITE
+00F8   3030           00150    MOVLW 0x30
+00F9   2???           00151    CALL VAL.LCD.WRITE
+                      00152 
+00FA   303A           00153    MOVLW 0x3A
+00FB   2???           00154    CALL VAL.LCD.WRITE
+                      00155 
+00FC   3030           00156    MOVLW 0x30
+00FD   2???           00157    CALL VAL.LCD.WRITE
+00FE   3030           00158    MOVLW 0x30
+00FF   2???           00159    CALL VAL.LCD.WRITE
+                      00160    
+0100   0008           00161    RETURN
+                      00162 
+  0000                00163    GLOBAL FORMAT.TIME   
+                      00164    
+0101                  00165 PRINT.TIME:
+                      00166     
+0101   2???           00167     CALL FUNCTION.LCD.WRITE
+0102   2???           00168     CALL ASCII.NUMBER.TIME
+                      00169     
+0103   3002           00170     MOVLW 0X02
+0104   00C8           00171     MOVWF 0X48
+                      00172     
+0105   3051           00173     MOVLW 0X51
+0106   0084           00174     MOVWF FSR
+                      00175     
 Warning[207]: Found label after column 1. (LOOP.TIME.2)
-0188                  00177     LOOP.TIME.2:
-                      00178     
-0188   0800           00179     MOVFW INDF
-0189   2???           00180     CALL VAL.LCD.WRITE
-                      00181     
+0107                  00176     LOOP.TIME.2:
+                      00177     
+0107   0800           00178     MOVFW INDF
+0108   2???           00179     CALL VAL.LCD.WRITE
+                      00180     
 Message[305]: Using default destination of 1 (file).
-018A   0384           00182     DECF FSR
-018B   0BC8           00183     DECFSZ 0X48,F
-018C   2???           00184     GOTO LOOP.TIME.2
-                      00185     
-018D   0008           00186     RETURN
-                      00187 
-  0000                00188     GLOBAL PRINT.TIME
-                      00189     
-018E                  00190 ASCII.NUMBER.TIME:
-                      00191    
-018E   3002           00192    MOVLW 0X02
-018F   00C8           00193    MOVWF 0X48
-                      00194    
-0190   3050           00195    MOVLW 0X50
-MPASM 5.70                 LCD_FUNCTIONS.ASM   12-20-2016  22:40:31         PAGE  5
+0109   0384           00181     DECF FSR
+010A   0BC8           00182     DECFSZ 0X48,F
+010B   2???           00183     GOTO LOOP.TIME.2
+                      00184     
+010C   0008           00185     RETURN
+                      00186 
+  0000                00187     GLOBAL PRINT.TIME
+                      00188     
+010D                  00189 ASCII.NUMBER.TIME:
+                      00190    
+010D   3002           00191    MOVLW 0X02
+010E   00C8           00192    MOVWF 0X48
+                      00193    
+010F   3050           00194    MOVLW 0X50
+0110   0084           00195    MOVWF FSR
+MPASM 5.70                 LCD_FUNCTIONS.ASM   12-21-2016  0:22:53         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0191   0084           00196    MOVWF FSR
-                      00197    
-0192   3030           00198    MOVLW 0X30
-                      00199    
-0193                  00200 LOOP.ASCII.TIME:
-                      00201    
-0193   0780           00202    ADDWF INDF,F    
-0194   0A84           00203    INCF FSR,F
-0195   0BC8           00204    DECFSZ 0X48,F
-0196   2???           00205    GOTO LOOP.ASCII.TIME
-                      00206    
-0197   0008           00207    RETURN
+                      00196    
+0111   3030           00197    MOVLW 0X30
+                      00198    
+0112                  00199 LOOP.ASCII.TIME:
+                      00200    
+0112   0780           00201    ADDWF INDF,F    
+0113   0A84           00202    INCF FSR,F
+0114   0BC8           00203    DECFSZ 0X48,F
+0115   2???           00204    GOTO LOOP.ASCII.TIME
+                      00205    
+0116   0008           00206    RETURN
+                      00207 
                       00208 
                       00209 
-                      00210 
-0198                  00211 BANK0:
-                      00212 
-0198   1383           00213     BCF STATUS,IRP
-0199   1283           00214     BCF STATUS,RP0
-019A   1303           00215     BCF STATUS,RP1
-                      00216     
-019B   0008           00217     RETURN
-                      00218     
-019C                  00219 BANK1:
-                      00220 
-019C   1383           00221     BCF STATUS,IRP
-019D   1303           00222     BCF STATUS,RP1
-019E   1683           00223     BSF STATUS,RP0
-                      00224     
-019F   0008           00225     RETURN
-                      00226     
-01A0                  00227 BANK2:
-                      00228 
-01A0   1783           00229     BSF STATUS,IRP
-01A1   1703           00230     BSF STATUS,RP1
-01A2   1283           00231     BCF STATUS,RP0
-                      00232     
-01A3   0008           00233     RETURN 
-                      00234     
-01A4                  00235 BANK3:
-                      00236 
-01A4   1783           00237     BSF STATUS,IRP
-01A5   1703           00238     BSF STATUS,RP1
-01A6   1683           00239     BSF STATUS,RP0
-                      00240     
-01A7   0008           00241     RETURN   
-                      00242 
-01A8                  00243 INITDELAY:          ;INIT DELAY 2ms
-                      00244 
-01A8   3020           00245     movlw 0X20          
-01A9   00C0           00246     movwf 0x40         
-                      00247     
-01AA                  00248 DELAY0:
-MPASM 5.70                 LCD_FUNCTIONS.ASM   12-20-2016  22:40:31         PAGE  6
+0117                  00210 BANK0:
+                      00211 
+0117   1383           00212     BCF STATUS,IRP
+0118   1283           00213     BCF STATUS,RP0
+0119   1303           00214     BCF STATUS,RP1
+                      00215     
+011A   0008           00216     RETURN
+                      00217     
+011B                  00218 BANK1:
+                      00219 
+011B   1383           00220     BCF STATUS,IRP
+011C   1303           00221     BCF STATUS,RP1
+011D   1683           00222     BSF STATUS,RP0
+                      00223     
+011E   0008           00224     RETURN
+                      00225     
+011F                  00226 BANK2:
+                      00227 
+011F   1783           00228     BSF STATUS,IRP
+0120   1703           00229     BSF STATUS,RP1
+0121   1283           00230     BCF STATUS,RP0
+                      00231     
+0122   0008           00232     RETURN 
+                      00233     
+0123                  00234 BANK3:
+                      00235 
+0123   1783           00236     BSF STATUS,IRP
+0124   1703           00237     BSF STATUS,RP1
+0125   1683           00238     BSF STATUS,RP0
+                      00239     
+0126   0008           00240     RETURN   
+                      00241 
+0127                  00242 INITDELAY:          ;INIT DELAY 2ms
+                      00243 
+0127   3020           00244     movlw 0X20          
+0128   00C0           00245     movwf 0x40         
+                      00246     
+0129                  00247 DELAY0:
+                      00248     
+MPASM 5.70                 LCD_FUNCTIONS.ASM   12-21-2016  0:22:53         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-                      00249     
-01AA   0BC0           00250     DECFSZ 0x40,f
-01AB   2???           00251     GOTO DELAY0
-                      00252     
-01AC   0008           00253     RETURN
-                      00254         
-                      00255     END
-MPASM 5.70                 LCD_FUNCTIONS.ASM   12-20-2016  22:40:31         PAGE  7
+0129   0BC0           00249     DECFSZ 0x40,f
+012A   2???           00250     GOTO DELAY0
+                      00251     
+012B   0008           00252     RETURN
+                      00253         
+                      00254     END
+MPASM 5.70                 LCD_FUNCTIONS.ASM   12-21-2016  0:22:53         PAGE  7
 
 
 SYMBOL TABLE
@@ -326,12 +325,12 @@ ADIF                              00000006
 ADON                              00000000
 ADRESH                            0000001E
 ADRESL                            0000009E
-ASCII.NUMBER.255                  00000153
-ASCII.NUMBER.TIME                 0000018E
-BANK0                             00000198
-BANK1                             0000019C
-BANK2                             000001A0
-BANK3                             000001A4
+ASCII.NUMBER.255                  000000D2
+ASCII.NUMBER.TIME                 0000010D
+BANK0                             00000117
+BANK1                             0000011B
+BANK2                             0000011F
+BANK3                             00000123
 BCLIE                             00000003
 BCLIF                             00000003
 BF                                00000000
@@ -365,7 +364,7 @@ CHS0                              00000003
 CHS1                              00000004
 CHS2                              00000005
 CKE                               00000006
-MPASM 5.70                 LCD_FUNCTIONS.ASM   12-20-2016  22:40:31         PAGE  8
+MPASM 5.70                 LCD_FUNCTIONS.ASM   12-21-2016  0:22:53         PAGE  8
 
 
 SYMBOL TABLE
@@ -377,7 +376,7 @@ CSRC                              00000007
 D                                 00000005
 DATA_ADDRESS                      00000005
 DC                                00000001
-DELAY0                            000001AA
+DELAY0                            00000129
 D_A                               00000005
 D_NOT_A                           00000005
 EEADR                             0000010D
@@ -391,9 +390,9 @@ EEIF                              00000004
 EEPGD                             00000007
 F                                 00000001
 FERR                              00000002
-FORMAT.TIME                       0000015D
+FORMAT.TIME                       000000DC
 FSR                               00000004
-FUNCTION.LCD.WRITE                0000013A
+FUNCTION.LCD.WRITE                000000B9
 GCEN                              00000007
 GIE                               00000007
 GO                                00000002
@@ -406,17 +405,17 @@ I2C_STOP                          00000004
 IBF                               00000007
 IBOV                              00000005
 INDF                              00000000
-INITDELAY                         000001A8
-INITDisplay                       00000120
+INITDELAY                         00000127
+INITDisplay                       0000009F
 INTCON                            0000000B
 INTE                              00000004
 INTEDG                            00000006
 INTF                              00000001
 IRP                               00000007
-LOOP.3                            0000014D
-LOOP.ASCII.255                    00000158
-LOOP.ASCII.TIME                   00000193
-LOOP.TIME.2                       00000188
+LOOP.3                            000000CC
+LOOP.ASCII.255                    000000D7
+LOOP.ASCII.TIME                   00000112
+LOOP.TIME.2                       00000107
 NOT_A                             00000005
 NOT_ADDRESS                       00000005
 NOT_BO                            00000000
@@ -424,7 +423,7 @@ NOT_BOR                           00000000
 NOT_DONE                          00000002
 NOT_PD                            00000003
 NOT_POR                           00000001
-MPASM 5.70                 LCD_FUNCTIONS.ASM   12-20-2016  22:40:31         PAGE  9
+MPASM 5.70                 LCD_FUNCTIONS.ASM   12-21-2016  0:22:53         PAGE  9
 
 
 SYMBOL TABLE
@@ -460,8 +459,8 @@ PORTC                             00000007
 PORTD                             00000008
 PORTE                             00000009
 PR2                               00000092
-PRINT.255                         00000146
-PRINT.TIME                        00000182
+PRINT.255                         000000C5
+PRINT.TIME                        00000101
 PS0                               00000000
 PS1                               00000001
 PS2                               00000002
@@ -483,7 +482,7 @@ RB3                               00000003
 RB4                               00000004
 RB5                               00000005
 RB6                               00000006
-MPASM 5.70                 LCD_FUNCTIONS.ASM   12-20-2016  22:40:31         PAGE 10
+MPASM 5.70                 LCD_FUNCTIONS.ASM   12-21-2016  0:22:53         PAGE 10
 
 
 SYMBOL TABLE
@@ -542,7 +541,7 @@ SSPEN                             00000005
 SSPIE                             00000003
 SSPIF                             00000003
 SSPM0                             00000000
-MPASM 5.70                 LCD_FUNCTIONS.ASM   12-20-2016  22:40:31         PAGE 11
+MPASM 5.70                 LCD_FUNCTIONS.ASM   12-21-2016  0:22:53         PAGE 11
 
 
 SYMBOL TABLE
@@ -601,7 +600,7 @@ TRISB3                            00000003
 TRISB4                            00000004
 TRISB5                            00000005
 TRISB6                            00000006
-MPASM 5.70                 LCD_FUNCTIONS.ASM   12-20-2016  22:40:31         PAGE 12
+MPASM 5.70                 LCD_FUNCTIONS.ASM   12-21-2016  0:22:53         PAGE 12
 
 
 SYMBOL TABLE
@@ -641,7 +640,7 @@ TXIF                              00000004
 TXREG                             00000019
 TXSTA                             00000098
 UA                                00000001
-VAL.LCD.WRITE                     00000140
+VAL.LCD.WRITE                     000000BF
 W                                 00000000
 WCOL                              00000007
 WR                                00000001
@@ -660,7 +659,7 @@ _CP_HALF                          00001FDF
 _CP_OFF                           00003FFF
 _CP_UPPER_256                     00002FEF
 _DEBUG_OFF                        00003FFF
-MPASM 5.70                 LCD_FUNCTIONS.ASM   12-20-2016  22:40:31         PAGE 13
+MPASM 5.70                 LCD_FUNCTIONS.ASM   12-21-2016  0:22:53         PAGE 13
 
 
 SYMBOL TABLE

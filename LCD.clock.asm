@@ -10,24 +10,41 @@
 
 RESET:
     CALL INITDisplay
-   CALL FORMAT.TIME;FORMAT FUNCTION ON SCREEN AND INIT VARIABALE 
+    CALL FORMAT.TIME;FORMAT FUNCTION ON SCREEN AND INIT VARIABALE 
     
 TIMERLOGIC:
     
 INIT.VAL:
-    clrf 0x52
-    clrf 0x53
-    clrf 0x54
+    
+    MOVLW 0X3B ;-------->SET.SECONDS
+    MOVWF 0X52
+    CALL BCD.2.DIG
+    MOVLW 0XCA
+    CALL PRINT.TIME
+    
+    
+    MOVLW 0X3B ;-------->SET.MINTUES
+    MOVWF 0X53
+    CALL BCD.2.DIG
+    MOVLW 0XC7
+    CALL PRINT.TIME
+    
+    
+    MOVLW 0X17 ;-------->SET.HOURS
+    MOVWF 0X54
+    CALL BCD.2.DIG
+    MOVLW 0XC4
+    CALL PRINT.TIME
     
     movlw 0x3b
     movwf 0x55
     
-    movlw 0x18
+    movlw 0x17
     movwf 0x56
     
     
     
-countersec:
+TIME.SEC:
     
     bcf STATUS,Z
     call DELAY.1SEC.TMR1  ;delay
@@ -36,7 +53,7 @@ countersec:
     subwf 0x52,w
     
     btfsc STATUS,Z    
-    goto countrmin ;1
+    goto TIME.MIN ;1
     incf 0x52      ;0
 
     MOVFW 0X52
@@ -44,10 +61,10 @@ countersec:
     MOVLW 0XCA
     CALL PRINT.TIME
                                 
-    goto countersec
+    goto TIME.SEC
     
     
-countrmin:
+TIME.MIN:
     
     clrf 0x52
     MOVFW 0X52
@@ -61,7 +78,7 @@ countrmin:
     subwf 0x53,w
 
     btfsc STATUS,Z    
-    goto countrhour ;1
+    goto TIME.HOUR ;1
     incf 0x53      ;0
 
     MOVFW 0X53
@@ -69,11 +86,11 @@ countrmin:
     MOVLW 0XC7
     CALL PRINT.TIME
     
-goto countersec 
+GOTO TIME.SEC 
     
-countrhour:
+TIME.HOUR:
     
-    CLRFW 0X53
+    CLRF 0X53
     MOVFW 0X53
     CALL BCD.2.DIG
     MOVLW 0XC7
@@ -82,20 +99,29 @@ countrhour:
     
     bcf STATUS,Z
     
-    movfw 0x56            ;constent=59
+    movfw 0x56            ;constent=23
     subwf 0x54,w
 
     btfsc STATUS,Z    
-    clrf 0x56      ;1
-    incf 0x56      ;0
+    goto RESET.HOUR;1
+    incf 0x54      ;0
 
-    MOVFW 0X53
+    MOVFW 0X54
     CALL BCD.2.DIG
     MOVLW 0XC4
     CALL PRINT.TIME
     
-    goto countersec     
+    goto TIME.SEC     
     
+    RESET.HOUR:
+    
+    CLRF 0X54
+    MOVFW 0X54
+    CALL BCD.2.DIG
+    MOVLW 0XC4
+    CALL PRINT.TIME
+    
+    GOTO TIME.SEC
     
     DELAY.1SEC.TMR1:
     MOVLW 0X31             ;PRE,CLOCK CHOOSE,ENEBALE BIT

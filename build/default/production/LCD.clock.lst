@@ -1,4 +1,4 @@
-MPASM 5.70                     LCD.CLOCK.ASM   12-20-2016  22:40:31         PAGE  1
+MPASM 5.70                     LCD.CLOCK.ASM   12-21-2016  0:22:53         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -41,137 +41,171 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00010 
 0000                  00011 RESET:
 0000   2???           00012     CALL INITDisplay
-0001   2???           00013    CALL FORMAT.TIME;FORMAT FUNCTION ON SCREEN AND INIT VARIABALE 
+0001   2???           00013     CALL FORMAT.TIME;FORMAT FUNCTION ON SCREEN AND INIT VARIABALE 
                       00014     
 0002                  00015 TIMERLOGIC:
                       00016     
 0002                  00017 INIT.VAL:
-0002   01D2           00018     clrf 0x52
-0003   01D3           00019     clrf 0x53
-0004   01D4           00020     clrf 0x54
-                      00021     
-0005   303B           00022     movlw 0x3b
-0006   00D5           00023     movwf 0x55
+                      00018     
+0002   303B           00019     MOVLW 0X3B ;-------->SET.SECONDS
+0003   00D2           00020     MOVWF 0X52
+0004   2???           00021     CALL BCD.2.DIG
+0005   30CA           00022     MOVLW 0XCA
+0006   2???           00023     CALL PRINT.TIME
                       00024     
-0007   3018           00025     movlw 0x18
-0008   00D6           00026     movwf 0x56
-                      00027     
-                      00028     
-MPASM 5.70                     LCD.CLOCK.ASM   12-20-2016  22:40:31         PAGE  2
+                      00025     
+0007   303B           00026     MOVLW 0X3B ;-------->SET.MINTUES
+0008   00D3           00027     MOVWF 0X53
+0009   2???           00028     CALL BCD.2.DIG
+MPASM 5.70                     LCD.CLOCK.ASM   12-21-2016  0:22:53         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-                      00029     
-0009                  00030 countersec:
+000A   30C7           00029     MOVLW 0XC7
+000B   2???           00030     CALL PRINT.TIME
                       00031     
-0009   1103           00032     bcf STATUS,Z
-000A   2???           00033     call DELAY.1SEC.TMR1  ;delay
-                      00034     
-000B   0855           00035     movfw 0x55            ;constent=59
-000C   0252           00036     subwf 0x52,w
-                      00037     
-000D   1903           00038     btfsc STATUS,Z    
-000E   2???           00039     goto countrmin ;1
-Message[305]: Using default destination of 1 (file).
-000F   0AD2           00040     incf 0x52      ;0
-                      00041 
-0010   0852           00042     MOVFW 0X52
-0011   2???           00043     CALL BCD.2.DIG
-0012   30CA           00044     MOVLW 0XCA
-0013   2???           00045     CALL PRINT.TIME
-                      00046                                 
-0014   2???           00047     goto countersec
+                      00032     
+000C   3017           00033     MOVLW 0X17 ;-------->SET.HOURS
+000D   00D4           00034     MOVWF 0X54
+000E   2???           00035     CALL BCD.2.DIG
+000F   30C4           00036     MOVLW 0XC4
+0010   2???           00037     CALL PRINT.TIME
+                      00038     
+0011   303B           00039     movlw 0x3b
+0012   00D5           00040     movwf 0x55
+                      00041     
+0013   3017           00042     movlw 0x17
+0014   00D6           00043     movwf 0x56
+                      00044     
+                      00045     
+                      00046     
+0015                  00047 TIME.SEC:
                       00048     
-                      00049     
-0015                  00050 countrmin:
+0015   1103           00049     bcf STATUS,Z
+0016   2???           00050     call DELAY.1SEC.TMR1  ;delay
                       00051     
-0015   0852           00052     MOVFW 0X52
-0016   2???           00053     CALL BCD.2.DIG
-0017   30CA           00054     MOVLW 0XCA
-0018   2???           00055     CALL PRINT.TIME
-                      00056     
-0019   01D2           00057     clrf 0x52
-001A   1103           00058     bcf STATUS,Z
-                      00059     
-001B   0855           00060     movfw 0x55            ;constent=59
-001C   0253           00061     subwf 0x53,w
-                      00062 
-001D   1903           00063     btfsc STATUS,Z    
-001E   2???           00064     goto countrhour ;1
+0017   0855           00052     movfw 0x55            ;constent=59
+0018   0252           00053     subwf 0x52,w
+                      00054     
+0019   1903           00055     btfsc STATUS,Z    
+001A   2???           00056     goto TIME.MIN ;1
 Message[305]: Using default destination of 1 (file).
-001F   0AD3           00065     incf 0x53      ;0
-                      00066 
-0020   0853           00067     MOVFW 0X53
-0021   2???           00068     CALL BCD.2.DIG
-0022   30C7           00069     MOVLW 0XC7
-0023   2???           00070     CALL PRINT.TIME
-                      00071     
-Warning[203]: Found opcode in column 1. (goto)
-0024   2???           00072 goto countersec 
-                      00073     
-0025                  00074 countrhour:
-                      00075     
-0025   0853           00076     MOVFW 0X53
-0026   2???           00077     CALL BCD.2.DIG
-0027   30C7           00078     MOVLW 0XC7
-MPASM 5.70                     LCD.CLOCK.ASM   12-20-2016  22:40:31         PAGE  3
+001B   0AD2           00057     incf 0x52      ;0
+                      00058 
+001C   0852           00059     MOVFW 0X52
+001D   2???           00060     CALL BCD.2.DIG
+001E   30CA           00061     MOVLW 0XCA
+001F   2???           00062     CALL PRINT.TIME
+                      00063                                 
+0020   2???           00064     goto TIME.SEC
+                      00065     
+                      00066     
+0021                  00067 TIME.MIN:
+                      00068     
+0021   01D2           00069     clrf 0x52
+0022   0852           00070     MOVFW 0X52
+0023   2???           00071     CALL BCD.2.DIG
+0024   30CA           00072     MOVLW 0XCA
+0025   2???           00073     CALL PRINT.TIME
+                      00074     
+0026   1103           00075     bcf STATUS,Z
+                      00076     
+0027   0855           00077     movfw 0x55            ;constent=59
+0028   0253           00078     subwf 0x53,w
+                      00079 
+0029   1903           00080     btfsc STATUS,Z    
+MPASM 5.70                     LCD.CLOCK.ASM   12-21-2016  0:22:53         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0028   2???           00079     CALL PRINT.TIME
-                      00080     
-0029   01D3           00081     clrf 0x53
-002A   1103           00082     bcf STATUS,Z
-                      00083     
-002B   0856           00084     movfw 0x56            ;constent=59
-002C   0254           00085     subwf 0x54,w
-                      00086 
-002D   1903           00087     btfsc STATUS,Z    
-002E   01D6           00088     clrf 0x56      ;1
+002A   2???           00081     goto TIME.HOUR ;1
 Message[305]: Using default destination of 1 (file).
-002F   0AD6           00089     incf 0x56      ;0
-                      00090 
-0030   0853           00091     MOVFW 0X53
-0031   2???           00092     CALL BCD.2.DIG
-0032   30C4           00093     MOVLW 0XC4
-0033   2???           00094     CALL PRINT.TIME
-                      00095     
-0034   2???           00096     goto countersec     
-                      00097     
+002B   0AD3           00082     incf 0x53      ;0
+                      00083 
+002C   0853           00084     MOVFW 0X53
+002D   2???           00085     CALL BCD.2.DIG
+002E   30C7           00086     MOVLW 0XC7
+002F   2???           00087     CALL PRINT.TIME
+                      00088     
+Warning[203]: Found opcode in column 1. (GOTO)
+0030   2???           00089 GOTO TIME.SEC 
+                      00090     
+0031                  00091 TIME.HOUR:
+                      00092     
+0031   01D3           00093     CLRF 0X53
+0032   0853           00094     MOVFW 0X53
+0033   2???           00095     CALL BCD.2.DIG
+0034   30C7           00096     MOVLW 0XC7
+0035   2???           00097     CALL PRINT.TIME
                       00098     
-Warning[207]: Found label after column 1. (DELAY.1SEC.TMR1)
-0035                  00099     DELAY.1SEC.TMR1:
-0035   3031           00100     MOVLW 0X31             ;PRE,CLOCK CHOOSE,ENEBALE BIT
-0036   0090           00101     MOVWF T1CON
-0037   30C8           00102     MOVLW 0XC8             ;LOW
-0038   008E           00103     MOVWF TMR1L
-0039   3032           00104     MOVLW 0X32
-003A   008F           00105     MOVWF TMR1H            ;HIGH
-Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-003B   140C           00106     BSF PIE1,TMR1IE        ;INTURPPET ENABLER? YES
-003C   100C           00107     BCF PIR1,TMR1IF        ;INIT INTURPET
+                      00099     
+0036   1103           00100     bcf STATUS,Z
+                      00101     
+0037   0856           00102     movfw 0x56            ;constent=23
+0038   0254           00103     subwf 0x54,w
+                      00104 
+0039   1903           00105     btfsc STATUS,Z    
+003A   2???           00106     goto RESET.HOUR;1
+Message[305]: Using default destination of 1 (file).
+003B   0AD4           00107     incf 0x54      ;0
                       00108 
-003D   3004           00109     MOVLW 0X04
-003E   00C5           00110     MOVWF 0X45
-                      00111     
-003F                  00112 LOOP.1KHZ:
-003F   1C0C           00113     BTFSS PIR1,TMR1IF
-0040   2???           00114     GOTO LOOP.1KHZ
+003C   0854           00109     MOVFW 0X54
+003D   2???           00110     CALL BCD.2.DIG
+003E   30C4           00111     MOVLW 0XC4
+003F   2???           00112     CALL PRINT.TIME
+                      00113     
+0040   2???           00114     goto TIME.SEC     
                       00115     
-0041                  00116 INTURREPT:
-0041   100C           00117     BCF PIR1,TMR1IF
-0042   0BC5           00118     DECFSZ 0x45,F
-0043   2???           00119     GOTO LOOP.1KHZ
-0044   0008           00120     RETURN
-                      00121 
-                      00122 
+Warning[207]: Found label after column 1. (RESET.HOUR)
+0041                  00116     RESET.HOUR:
+                      00117     
+0041   01D4           00118     CLRF 0X54
+0042   0854           00119     MOVFW 0X54
+0043   2???           00120     CALL BCD.2.DIG
+0044   30C4           00121     MOVLW 0XC4
+0045   2???           00122     CALL PRINT.TIME
+                      00123     
+0046   2???           00124     GOTO TIME.SEC
+                      00125     
+Warning[207]: Found label after column 1. (DELAY.1SEC.TMR1)
+0047                  00126     DELAY.1SEC.TMR1:
+0047   3031           00127     MOVLW 0X31             ;PRE,CLOCK CHOOSE,ENEBALE BIT
+0048   0090           00128     MOVWF T1CON
+MPASM 5.70                     LCD.CLOCK.ASM   12-21-2016  0:22:53         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0049   30C8           00129     MOVLW 0XC8             ;LOW
+004A   008E           00130     MOVWF TMR1L
+004B   3032           00131     MOVLW 0X32
+004C   008F           00132     MOVWF TMR1H            ;HIGH
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+004D   140C           00133     BSF PIE1,TMR1IE        ;INTURPPET ENABLER? YES
+004E   100C           00134     BCF PIR1,TMR1IF        ;INIT INTURPET
+                      00135 
+004F   3004           00136     MOVLW 0X04
+0050   00C5           00137     MOVWF 0X45
+                      00138     
+0051                  00139 LOOP.1KHZ:
+0051   1C0C           00140     BTFSS PIR1,TMR1IF
+0052   2???           00141     GOTO LOOP.1KHZ
+                      00142     
+0053                  00143 INTURREPT:
+0053   100C           00144     BCF PIR1,TMR1IF
+0054   0BC5           00145     DECFSZ 0x45,F
+0055   2???           00146     GOTO LOOP.1KHZ
+0056   0008           00147     RETURN
+                      00148 
+                      00149 
 Warning[205]: Found directive in column 1. (END)
-373A                  00123 END
-MPASM 5.70                     LCD.CLOCK.ASM   12-20-2016  22:40:31         PAGE  4
+373A                  00150 END
+MPASM 5.70                     LCD.CLOCK.ASM   12-21-2016  0:22:53         PAGE  5
 
 
 SYMBOL TABLE
@@ -230,7 +264,7 @@ CKP                               00000004
 CREN                              00000004
 CSRC                              00000007
 D                                 00000005
-MPASM 5.70                     LCD.CLOCK.ASM   12-20-2016  22:40:31         PAGE  5
+MPASM 5.70                     LCD.CLOCK.ASM   12-21-2016  0:22:53         PAGE  6
 
 
 SYMBOL TABLE
@@ -238,7 +272,7 @@ SYMBOL TABLE
 
 DATA_ADDRESS                      00000005
 DC                                00000001
-DELAY.1SEC.TMR1                   00000035
+DELAY.1SEC.TMR1                   00000047
 D_A                               00000005
 D_NOT_A                           00000005
 EEADR                             0000010D
@@ -274,9 +308,9 @@ INTCON                            0000000B
 INTE                              00000004
 INTEDG                            00000006
 INTF                              00000001
-INTURREPT                         00000041
+INTURREPT                         00000053
 IRP                               00000007
-LOOP.1KHZ                         0000003F
+LOOP.1KHZ                         00000051
 NOT_A                             00000005
 NOT_ADDRESS                       00000005
 NOT_BO                            00000000
@@ -289,7 +323,7 @@ NOT_RC8                           00000006
 NOT_T1SYNC                        00000002
 NOT_TO                            00000004
 NOT_TX8                           00000006
-MPASM 5.70                     LCD.CLOCK.ASM   12-20-2016  22:40:31         PAGE  6
+MPASM 5.70                     LCD.CLOCK.ASM   12-21-2016  0:22:53         PAGE  7
 
 
 SYMBOL TABLE
@@ -348,7 +382,7 @@ RBIE                              00000003
 RBIF                              00000000
 RC0                               00000000
 RC1                               00000001
-MPASM 5.70                     LCD.CLOCK.ASM   12-20-2016  22:40:31         PAGE  7
+MPASM 5.70                     LCD.CLOCK.ASM   12-21-2016  0:22:53         PAGE  8
 
 
 SYMBOL TABLE
@@ -382,6 +416,7 @@ RE1                               00000001
 RE2                               00000002
 READ_WRITE                        00000002
 RESET                             00000000
+RESET.HOUR                        00000041
 RP0                               00000005
 RP1                               00000006
 RSEN                              00000001
@@ -406,13 +441,13 @@ SSPM0                             00000000
 SSPM1                             00000001
 SSPM2                             00000002
 SSPM3                             00000003
-SSPOV                             00000006
-MPASM 5.70                     LCD.CLOCK.ASM   12-20-2016  22:40:31         PAGE  8
+MPASM 5.70                     LCD.CLOCK.ASM   12-21-2016  0:22:53         PAGE  9
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+SSPOV                             00000006
 SSPSTAT                           00000094
 STATUS                            00000003
 SYNC                              00000004
@@ -429,6 +464,9 @@ T1SYNC                            00000002
 T2CKPS0                           00000000
 T2CKPS1                           00000001
 T2CON                             00000012
+TIME.HOUR                         00000031
+TIME.MIN                          00000021
+TIME.SEC                          00000015
 TIMERLOGIC                        00000002
 TMR0                              00000001
 TMR0IE                            00000005
@@ -462,16 +500,16 @@ TRISB2                            00000002
 TRISB3                            00000003
 TRISB4                            00000004
 TRISB5                            00000005
-TRISB6                            00000006
-TRISB7                            00000007
-TRISC                             00000087
-TRISC0                            00000000
-MPASM 5.70                     LCD.CLOCK.ASM   12-20-2016  22:40:31         PAGE  9
+MPASM 5.70                     LCD.CLOCK.ASM   12-21-2016  0:22:53         PAGE 10
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+TRISB6                            00000006
+TRISB7                            00000007
+TRISC                             00000087
+TRISC0                            00000000
 TRISC1                            00000001
 TRISC2                            00000002
 TRISC3                            00000003
@@ -521,16 +559,16 @@ _CP_HALF                          00001FDF
 _CP_OFF                           00003FFF
 _CP_UPPER_256                     00002FEF
 _DEBUG_OFF                        00003FFF
-_DEBUG_ON                         000037FF
-_DEVID1                           00002006
-_FOSC_EXTRC                       00003FFF
-_FOSC_HS                          00003FFE
-MPASM 5.70                     LCD.CLOCK.ASM   12-20-2016  22:40:31         PAGE 10
+MPASM 5.70                     LCD.CLOCK.ASM   12-21-2016  0:22:53         PAGE 11
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+_DEBUG_ON                         000037FF
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
 _FOSC_LP                          00003FFC
 _FOSC_XT                          00003FFD
 _HS_OSC                           00003FFE
@@ -554,12 +592,9 @@ _WRT_OFF                          00003DFF
 _WRT_ON                           00003FFF
 _XT_OSC                           00003FFD
 __16F877                          00000001
-countersec                        00000009
-countrhour                        00000025
-countrmin                         00000015
 
 Errors   :     0
-Warnings :     3 reported,     0 suppressed
+Warnings :     4 reported,     0 suppressed
 Messages :     4 reported,     0 suppressed
 
 

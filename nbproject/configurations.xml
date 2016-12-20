@@ -103,6 +103,12 @@
         <property key="voltagevalue" value="5.0"/>
       </ICD3PlatformTool>
       <item path="LCD.Counter.asm" ex="true" overriding="false">
+        <MPASMWIN-AS>
+        </MPASMWIN-AS>
+        <MPASMWIN-LD>
+        </MPASMWIN-LD>
+        <mpasmsuite>
+        </mpasmsuite>
       </item>
       <item path="LCDcontrol.asm" ex="true" overriding="false">
         <MPASMWIN-AS>
