@@ -47,7 +47,7 @@ INIT.VAL:
 TIME.SEC:
     
     bcf STATUS,Z
-    call DELAY.1SEC.TMR1  ;delay
+    call DELAY.1SEC.TMR1  ;!!!!SWITCH THIS DELAY TO IMTERNAL DELAY MUTASM!!!!
     
     movfw 0x55            ;constent=59
     subwf 0x52,w
