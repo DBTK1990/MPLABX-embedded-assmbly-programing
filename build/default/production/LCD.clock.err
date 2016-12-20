@@ -1,0 +1,7 @@
+Message[305] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD.CLOCK.ASM 40 : Using default destination of 1 (file).
+Message[305] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD.CLOCK.ASM 65 : Using default destination of 1 (file).
+Warning[203] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD.CLOCK.ASM 72 : Found opcode in column 1. (goto)
+Message[305] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD.CLOCK.ASM 89 : Using default destination of 1 (file).
+Warning[207] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD.CLOCK.ASM 99 : Found label after column 1. (DELAY.1SEC.TMR1)
+Message[302] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD.CLOCK.ASM 106 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[205] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD.CLOCK.ASM 123 : Found directive in column 1. (END)

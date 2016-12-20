@@ -4,8 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/db141/MPLABXProjects/EX-03.X/LCD.Counter.asm</file>
+            <file>file:/C:/Users/db141/MPLABXProjects/EX-03.X/BCD_adapter.inc</file>
             <file>file:/C:/Users/db141/MPLABXProjects/EX-03.X/LCD_Functions.inc</file>
             <file>file:/C:/Users/db141/MPLABXProjects/EX-03.X/BCD_adapter.asm</file>
+            <file>file:/C:/Users/db141/MPLABXProjects/EX-03.X/LCD.clock.asm</file>
             <file>file:/C:/Users/db141/MPLABXProjects/EX-03.X/LCD_Functions.asm</file>
         </group>
     </open-files>

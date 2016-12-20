@@ -12,80 +12,21 @@ RESET:
     CALL INITDisplay
 
     
-;START:
-;    MOVLW 0X00
-;    MOVWF 0X49    ;counter
+START:
+    MOVLW 0X00
+    MOVWF 0X49    ;counter
 
     
-;LOOP:
+LOOP:
     
-;    CALL BCD.3
-;    CALL PRINT.255
-;    CALL DELAY.1SEC.TMR1
+    CALL BCD.3
+    CALL PRINT.255
+    CALL DELAY.1SEC.TMR1
     
-;    INCFSZ 0X49,F
-;    GOTO LOOP
-;    GOTO START
+    INCFSZ 0X49,F
+    GOTO LOOP
+    GOTO START
    
-TIMERLOGIC:
-    
-INIT.VAL:
-    clrf 0x52
-    clrf 0x53
-    clrf 0x54
-    
-    movlw 0x3b
-    movwf 0x55
-    
-    movlw 0x18
-    movwf 0x56
-    
-    
-    
-countersec:
-    
-    call printclock
-    bcf STATUS,Z
-    call DELAY.1SEC.TMR1  ;delay
-    
-    movfw 0x55            ;constent=59
-    subwf 0x52,w
-    
-    btfsc STATUS,Z    
-    goto countrmin ;1
-    incf 0x52      ;0
-
-    goto countersec
-    
-    
-countrmin:
-    
-    clrf 0x52
-    bcf STATUS,Z
-    
-    movfw 0x55            ;constent=59
-    subwf 0x53,w
-
-    btfsc STATUS,Z    
-    goto countrhour ;1
-    incf 0x53      ;0
-
-goto countrmin
-    
-countrhour:
-    
-    clrf 0x53
-    bcf STATUS,Z
-    
-    movfw 0x56            ;constent=59
-    subwf 0x54,w
-
-    btfsc STATUS,Z    
-    clrf 0x56      ;1
-    incf 0x56      ;0
-
-goto countersec     
-    
 DELAY.1SEC.TMR1:
     MOVLW 0X31             ;PRE,CLOCK CHOOSE,ENEBALE BIT
     MOVWF T1CON

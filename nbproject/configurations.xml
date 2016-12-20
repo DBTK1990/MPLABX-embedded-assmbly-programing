@@ -8,8 +8,6 @@
       <itemPath>LCD_Functions.asm</itemPath>
       <itemPath>BCD_adapter.asm</itemPath>
       <itemPath>BCD_adapter.inc</itemPath>
-      <itemPath>CLOCK_logic.inc</itemPath>
-      <itemPath>CLOCK_logic.asm</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -20,6 +18,7 @@
                    projectFiles="true">
       <itemPath>LCDcontrol.asm</itemPath>
       <itemPath>LCD.Counter.asm</itemPath>
+      <itemPath>LCD.clock.asm</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -103,6 +102,8 @@
         <property key="programoptions.uselvpprogramming" value="false"/>
         <property key="voltagevalue" value="5.0"/>
       </ICD3PlatformTool>
+      <item path="LCD.Counter.asm" ex="true" overriding="false">
+      </item>
       <item path="LCDcontrol.asm" ex="true" overriding="false">
         <MPASMWIN-AS>
         </MPASMWIN-AS>

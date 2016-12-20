@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=LCD_Functions.asm BCD_adapter.asm LCD.Counter.asm CLOCK_logic.asm
+SOURCEFILES_QUOTED_IF_SPACED=LCD_Functions.asm BCD_adapter.asm LCD.clock.asm
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/LCD_Functions.o ${OBJECTDIR}/BCD_adapter.o ${OBJECTDIR}/LCD.Counter.o ${OBJECTDIR}/CLOCK_logic.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/LCD_Functions.o.d ${OBJECTDIR}/BCD_adapter.o.d ${OBJECTDIR}/LCD.Counter.o.d ${OBJECTDIR}/CLOCK_logic.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/LCD_Functions.o ${OBJECTDIR}/BCD_adapter.o ${OBJECTDIR}/LCD.clock.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/LCD_Functions.o.d ${OBJECTDIR}/BCD_adapter.o.d ${OBJECTDIR}/LCD.clock.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/LCD_Functions.o ${OBJECTDIR}/BCD_adapter.o ${OBJECTDIR}/LCD.Counter.o ${OBJECTDIR}/CLOCK_logic.o
+OBJECTFILES=${OBJECTDIR}/LCD_Functions.o ${OBJECTDIR}/BCD_adapter.o ${OBJECTDIR}/LCD.clock.o
 
 # Source Files
-SOURCEFILES=LCD_Functions.asm BCD_adapter.asm LCD.Counter.asm CLOCK_logic.asm
+SOURCEFILES=LCD_Functions.asm BCD_adapter.asm LCD.clock.asm
 
 
 CFLAGS=
@@ -104,21 +104,13 @@ ${OBJECTDIR}/BCD_adapter.o: BCD_adapter.asm  nbproject/Makefile-${CND_CONF}.mk
 	@${DEP_GEN} -d "${OBJECTDIR}/BCD_adapter.o"
 	@${FIXDEPS} "${OBJECTDIR}/BCD_adapter.o.d" $(SILENT) -rsi ${MP_AS_DIR} -c18 
 	
-${OBJECTDIR}/LCD.Counter.o: LCD.Counter.asm  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/LCD.clock.o: LCD.clock.asm  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/LCD.Counter.o.d 
-	@${RM} ${OBJECTDIR}/LCD.Counter.o 
-	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/LCD.Counter.err" $(SILENT) -c ${MP_AS} $(MP_EXTRA_AS_PRE) -d__DEBUG -d__MPLAB_DEBUGGER_SIMULATOR=1 -q -p$(MP_PROCESSOR_OPTION)  -l\"${OBJECTDIR}/LCD.Counter.lst\" -e\"${OBJECTDIR}/LCD.Counter.err\" $(ASM_OPTIONS)    -o\"${OBJECTDIR}/LCD.Counter.o\" \"LCD.Counter.asm\" 
-	@${DEP_GEN} -d "${OBJECTDIR}/LCD.Counter.o"
-	@${FIXDEPS} "${OBJECTDIR}/LCD.Counter.o.d" $(SILENT) -rsi ${MP_AS_DIR} -c18 
-	
-${OBJECTDIR}/CLOCK_logic.o: CLOCK_logic.asm  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/CLOCK_logic.o.d 
-	@${RM} ${OBJECTDIR}/CLOCK_logic.o 
-	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/CLOCK_logic.err" $(SILENT) -c ${MP_AS} $(MP_EXTRA_AS_PRE) -d__DEBUG -d__MPLAB_DEBUGGER_SIMULATOR=1 -q -p$(MP_PROCESSOR_OPTION)  -l\"${OBJECTDIR}/CLOCK_logic.lst\" -e\"${OBJECTDIR}/CLOCK_logic.err\" $(ASM_OPTIONS)    -o\"${OBJECTDIR}/CLOCK_logic.o\" \"CLOCK_logic.asm\" 
-	@${DEP_GEN} -d "${OBJECTDIR}/CLOCK_logic.o"
-	@${FIXDEPS} "${OBJECTDIR}/CLOCK_logic.o.d" $(SILENT) -rsi ${MP_AS_DIR} -c18 
+	@${RM} ${OBJECTDIR}/LCD.clock.o.d 
+	@${RM} ${OBJECTDIR}/LCD.clock.o 
+	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/LCD.clock.err" $(SILENT) -c ${MP_AS} $(MP_EXTRA_AS_PRE) -d__DEBUG -d__MPLAB_DEBUGGER_SIMULATOR=1 -q -p$(MP_PROCESSOR_OPTION)  -l\"${OBJECTDIR}/LCD.clock.lst\" -e\"${OBJECTDIR}/LCD.clock.err\" $(ASM_OPTIONS)    -o\"${OBJECTDIR}/LCD.clock.o\" \"LCD.clock.asm\" 
+	@${DEP_GEN} -d "${OBJECTDIR}/LCD.clock.o"
+	@${FIXDEPS} "${OBJECTDIR}/LCD.clock.o.d" $(SILENT) -rsi ${MP_AS_DIR} -c18 
 	
 else
 ${OBJECTDIR}/LCD_Functions.o: LCD_Functions.asm  nbproject/Makefile-${CND_CONF}.mk
@@ -137,21 +129,13 @@ ${OBJECTDIR}/BCD_adapter.o: BCD_adapter.asm  nbproject/Makefile-${CND_CONF}.mk
 	@${DEP_GEN} -d "${OBJECTDIR}/BCD_adapter.o"
 	@${FIXDEPS} "${OBJECTDIR}/BCD_adapter.o.d" $(SILENT) -rsi ${MP_AS_DIR} -c18 
 	
-${OBJECTDIR}/LCD.Counter.o: LCD.Counter.asm  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/LCD.clock.o: LCD.clock.asm  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/LCD.Counter.o.d 
-	@${RM} ${OBJECTDIR}/LCD.Counter.o 
-	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/LCD.Counter.err" $(SILENT) -c ${MP_AS} $(MP_EXTRA_AS_PRE) -q -p$(MP_PROCESSOR_OPTION)  -l\"${OBJECTDIR}/LCD.Counter.lst\" -e\"${OBJECTDIR}/LCD.Counter.err\" $(ASM_OPTIONS)    -o\"${OBJECTDIR}/LCD.Counter.o\" \"LCD.Counter.asm\" 
-	@${DEP_GEN} -d "${OBJECTDIR}/LCD.Counter.o"
-	@${FIXDEPS} "${OBJECTDIR}/LCD.Counter.o.d" $(SILENT) -rsi ${MP_AS_DIR} -c18 
-	
-${OBJECTDIR}/CLOCK_logic.o: CLOCK_logic.asm  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/CLOCK_logic.o.d 
-	@${RM} ${OBJECTDIR}/CLOCK_logic.o 
-	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/CLOCK_logic.err" $(SILENT) -c ${MP_AS} $(MP_EXTRA_AS_PRE) -q -p$(MP_PROCESSOR_OPTION)  -l\"${OBJECTDIR}/CLOCK_logic.lst\" -e\"${OBJECTDIR}/CLOCK_logic.err\" $(ASM_OPTIONS)    -o\"${OBJECTDIR}/CLOCK_logic.o\" \"CLOCK_logic.asm\" 
-	@${DEP_GEN} -d "${OBJECTDIR}/CLOCK_logic.o"
-	@${FIXDEPS} "${OBJECTDIR}/CLOCK_logic.o.d" $(SILENT) -rsi ${MP_AS_DIR} -c18 
+	@${RM} ${OBJECTDIR}/LCD.clock.o.d 
+	@${RM} ${OBJECTDIR}/LCD.clock.o 
+	@${FIXDEPS} dummy.d -e "${OBJECTDIR}/LCD.clock.err" $(SILENT) -c ${MP_AS} $(MP_EXTRA_AS_PRE) -q -p$(MP_PROCESSOR_OPTION)  -l\"${OBJECTDIR}/LCD.clock.lst\" -e\"${OBJECTDIR}/LCD.clock.err\" $(ASM_OPTIONS)    -o\"${OBJECTDIR}/LCD.clock.o\" \"LCD.clock.asm\" 
+	@${DEP_GEN} -d "${OBJECTDIR}/LCD.clock.o"
+	@${FIXDEPS} "${OBJECTDIR}/LCD.clock.o.d" $(SILENT) -rsi ${MP_AS_DIR} -c18 
 	
 endif
 

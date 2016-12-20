@@ -1,4 +1,4 @@
-MPASM 5.70                   BCD_ADAPTER.ASM   12-19-2016  17:18:15         PAGE  1
+MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -54,120 +54,117 @@ Message[305]: Using default destination of 1 (file).
   0000                00037  GLOBAL BCD.3
                       00038 
                       00039  
-0071                  00040 BCD.2:
-                      00041                         ;Timer=0x41                                
-                      00042                              ;d1=0x50
-MPASM 5.70                   BCD_ADAPTER.ASM   12-19-2016  17:18:15         PAGE  2
+0071                  00040 BCD.2.DIG:
+                      00041                                                              
+                      00042                              
+MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0071                  00043 Init.Func.BCD.2:               ;d2=0x51
-                      00044                              ;d3=0x52
-0071   300A           00045     MOVLW 0x0A               ;BCD={d3,d2,d1}
-0072   00C0           00046     MOVWF 0x40
-                      00047     
-0073   0849           00048     MOVFW 0x49
-0074   00C1           00049     MOVWF 0x41
-                      00050     
-0075   3002           00051     MOVLW 0x02
-0076   00C8           00052     MOVWF 0x48
-                      00053 
-0077   3050           00054     MOVLW 0x50
-0078   0084           00055     MOVWF FSR
-                      00056 
-0079                  00057 DigitLoop.2:
-                      00058     
-0079   2???           00059     CALL Hiluk
+0071                  00043 Init.Func.BCD.2:             ;INPUT:
+                      00044                              ;Timer=W=0x41 on first step                             ;OUTPUT:
+0071   00C1           00045     MOVWF 0x41               ;d1=0x50
+                      00046                              ;d2=0x51
+0072   300A           00047     MOVLW 0x0A               ;BCD={d3,d2,d1}
+0073   00C0           00048     MOVWF 0x40
+                      00049     
+0074   3002           00050     MOVLW 0x02
+0075   00C8           00051     MOVWF 0x48
+                      00052 
+0076   3050           00053     MOVLW 0x50
+0077   0084           00054     MOVWF FSR
+                      00055     
+0078   2???           00056     CALL Hiluk
+                      00057     
+0079   0843           00058     MOVFW 0x43
+007A   0080           00059     MOVWF INDF
                       00060     
-007A   0843           00061     MOVFW 0x43
-007B   0080           00062     MOVWF INDF
-                      00063     
 Message[305]: Using default destination of 1 (file).
-007C   0A84           00064     INCF FSR
+007B   0A84           00061     INCF FSR
+                      00062     
+007C   0842           00063     MOVFW 0X42
+007D   0080           00064     MOVWF INDF
                       00065     
-007D   0842           00066     MOVFW 0X42
-007E   00C1           00067     MOVWF 0X41
-                      00068     
-007F   0BC8           00069     DECFSZ 0X48,F
-0080   2???           00070     GOTO DigitLoop.2
-                      00071    
-0081   0008           00072     RETURN   
-                      00073  
-0082                  00074 Hiluk:                    ;R=0X43 ,Q=0X42
+007E   0008           00066     RETURN   
+                      00067 
+Warning[205]: Found directive in column 1. (GLOBAL)
+  0000                00068 GLOBAL BCD.2.DIG    
+                      00069 
+007F                  00070 Hiluk:                    ;R=0X43 ,Q=0X42
+                      00071     
+007F                  00072 PreCheckH:
+                      00073     
+007F   3000           00074     MOVLW 0X00
                       00075     
-0082                  00076 PreCheckH:
+0080   1103           00076     bcf STATUS,2
                       00077     
-0082   3000           00078     MOVLW 0X00
-                      00079     
-0083   1103           00080     bcf STATUS,2
+0081   0441           00078     iorwf 0x41,W
+0082   1903           00079     btfsc STATUS,2
+0083   2???           00080     goto ZeroDivWithNum
                       00081     
-0084   0441           00082     iorwf 0x41,W
-0085   1903           00083     btfsc STATUS,2
-0086   2???           00084     goto ZeroDivWithNum
-                      00085     
-0087   3000           00086     MOVLW 0X00
-                      00087     
-0088   0440           00088     iorwf 0x40,W
-0089   1903           00089     btfsc STATUS,2
-008A   2???           00090     goto CantDivByZero
-                      00091 
-008B                  00092 BuilderH:
-                      00093     
-008B   01C3           00094     clrf 0x43
-MPASM 5.70                   BCD_ADAPTER.ASM   12-19-2016  17:18:15         PAGE  3
+0084   3000           00082     MOVLW 0X00
+                      00083     
+0085   0440           00084     iorwf 0x40,W
+0086   1903           00085     btfsc STATUS,2
+0087   2???           00086     goto CantDivByZero
+                      00087 
+0088                  00088 BuilderH:
+                      00089     
+0088   01C3           00090     clrf 0x43
+0089   1103           00091     bcf STATUS,2
+                      00092     
+008A   0841           00093     movfw 0x41
+MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-008C   1103           00095     bcf STATUS,2
-                      00096     
-008D   0841           00097     movfw 0x41
-008E   00C2           00098     movwf 0x42
+008B   00C2           00094     movwf 0x42
+                      00095     
+008C   0103           00096     clrw 
+008D   3008           00097     MOVLW 0x08
+008E   00C1           00098     movwf 0x41
                       00099     
-008F   0103           00100     clrw 
-0090   3008           00101     MOVLW 0x08
-0091   00C1           00102     movwf 0x41
-                      00103     
-0092                  00104 LoopHiluk:
+008F                  00100 LoopHiluk:
+                      00101     
+008F   1003           00102     bcf STATUS,0
+0090   0DC2           00103     rlf 0x42,1
+0091   0DC3           00104     rlf 0x43,1
                       00105     
-0092   1003           00106     bcf STATUS,0
-0093   0DC2           00107     rlf 0x42,1
-0094   0DC3           00108     rlf 0x43,1
-                      00109     
-0095   0840           00110     movfw 0x40
-0096   0243           00111     subwf 0x43,0
+0092   0840           00106     movfw 0x40
+0093   0243           00107     subwf 0x43,0
+                      00108     
+0094   1C03           00109     btfss STATUS,0
+0095   2???           00110     goto MbigerBNo    
+0096   2???           00111     goto MbigerBYes
                       00112     
-0097   1C03           00113     btfss STATUS,0
-0098   2???           00114     goto MbigerBNo    
-0099   2???           00115     goto MbigerBYes
+0097                  00113 MbigerBYes:
+0097   00C3           00114     movwf 0x43
+0098   1442           00115     bsf 0x42,0
                       00116     
-009A                  00117 MbigerBYes:
-009A   00C3           00118     movwf 0x43
-009B   1442           00119     bsf 0x42,0
-                      00120     
-009C                  00121 MbigerBNo:
-009C   0BC1           00122     decfsz 0x41,F
-009D   2???           00123     goto LoopHiluk
-                      00124 
-009E   0008           00125     RETURN           ;END OF HILUK 
-                      00126 
-009F                  00127 ZeroDivWithNum:
-009F   01C3           00128  clrf 0x43
-00A0   01C2           00129  clrf 0x42   
-                      00130     
-00A1   0008           00131     RETURN           ;END HILUK Q=0X42=0,R=0X43=0
-                      00132     
-00A2                  00133 CantDivByZero:       ;Print on Lcd Err:"DivBy0"
-                      00134                      ;will never be used 
-                      00135                      ;--->0x40=10(constent)
-                      00136 
-                      00137                      
-                      00138 
-                      00139     END
-MPASM 5.70                   BCD_ADAPTER.ASM   12-19-2016  17:18:15         PAGE  4
+0099                  00117 MbigerBNo:
+0099   0BC1           00118     decfsz 0x41,F
+009A   2???           00119     goto LoopHiluk
+                      00120 
+009B   0008           00121     RETURN           ;END OF HILUK 
+                      00122 
+009C                  00123 ZeroDivWithNum:
+009C   01C3           00124  clrf 0x43
+009D   01C2           00125  clrf 0x42   
+                      00126     
+009E   0008           00127     RETURN           ;END HILUK Q=0X42=0,R=0X43=0
+                      00128     
+009F                  00129 CantDivByZero:       ;Print on Lcd Err:"DivBy0"
+                      00130                      ;will never be used 
+                      00131                      ;--->0x40=10(constent)
+                      00132 
+                      00133                      
+                      00134 
+                      00135     END
+MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE  4
 
 
 SYMBOL TABLE
@@ -187,13 +184,13 @@ ADIF                              00000006
 ADON                              00000000
 ADRESH                            0000001E
 ADRESL                            0000009E
-BCD.2                             00000071
+BCD.2.DIG                         00000071
 BCD.3                             00000060
 BCLIE                             00000003
 BCLIF                             00000003
 BF                                00000000
 BRGH                              00000002
-BuilderH                          0000008B
+BuilderH                          00000088
 C                                 00000000
 CCP1CON                           00000017
 CCP1IE                            00000002
@@ -226,19 +223,18 @@ CKE                               00000006
 CKP                               00000004
 CREN                              00000004
 CSRC                              00000007
-MPASM 5.70                   BCD_ADAPTER.ASM   12-19-2016  17:18:15         PAGE  5
+MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE  5
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-CantDivByZero                     000000A2
+CantDivByZero                     0000009F
 D                                 00000005
 DATA_ADDRESS                      00000005
 DC                                00000001
 D_A                               00000005
 D_NOT_A                           00000005
-DigitLoop.2                       00000079
 DigitLoop.3                       00000068
 EEADR                             0000010D
 EEADRH                            0000010F
@@ -257,7 +253,7 @@ GIE                               00000007
 GO                                00000002
 GO_DONE                           00000002
 GO_NOT_DONE                       00000002
-Hiluk                             00000082
+Hiluk                             0000007F
 I2C_DATA                          00000005
 I2C_READ                          00000002
 I2C_START                         00000003
@@ -272,9 +268,9 @@ INTF                              00000001
 IRP                               00000007
 Init.Func.BCD.2                   00000071
 Init.Func.BCD.3                   00000060
-LoopHiluk                         00000092
-MbigerBNo                         0000009C
-MbigerBYes                        0000009A
+LoopHiluk                         0000008F
+MbigerBNo                         00000099
+MbigerBYes                        00000097
 NOT_A                             00000005
 NOT_ADDRESS                       00000005
 NOT_BO                            00000000
@@ -285,13 +281,13 @@ NOT_POR                           00000001
 NOT_RBPU                          00000007
 NOT_RC8                           00000006
 NOT_T1SYNC                        00000002
-MPASM 5.70                   BCD_ADAPTER.ASM   12-19-2016  17:18:15         PAGE  6
+NOT_TO                            00000004
+MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE  6
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-NOT_TO                            00000004
 NOT_TX8                           00000006
 NOT_W                             00000002
 NOT_WRITE                         00000002
@@ -325,7 +321,7 @@ PSA                               00000003
 PSPIE                             00000007
 PSPIF                             00000007
 PSPMODE                           00000004
-PreCheckH                         00000082
+PreCheckH                         0000007F
 R                                 00000002
 RA0                               00000000
 RA1                               00000001
@@ -344,13 +340,13 @@ RB7                               00000007
 RBIE                              00000003
 RBIF                              00000000
 RC0                               00000000
-MPASM 5.70                   BCD_ADAPTER.ASM   12-19-2016  17:18:15         PAGE  7
+RC1                               00000001
+MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE  7
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-RC1                               00000001
 RC2                               00000002
 RC3                               00000003
 RC4                               00000004
@@ -403,13 +399,13 @@ SSPM1                             00000001
 SSPM2                             00000002
 SSPM3                             00000003
 SSPOV                             00000006
-MPASM 5.70                   BCD_ADAPTER.ASM   12-19-2016  17:18:15         PAGE  8
+SSPSTAT                           00000094
+MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE  8
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-SSPSTAT                           00000094
 STATUS                            00000003
 SYNC                              00000004
 T0CS                              00000005
@@ -462,13 +458,13 @@ TRISB7                            00000007
 TRISC                             00000087
 TRISC0                            00000000
 TRISC1                            00000001
-MPASM 5.70                   BCD_ADAPTER.ASM   12-19-2016  17:18:15         PAGE  9
+TRISC2                            00000002
+MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE  9
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-TRISC2                            00000002
 TRISC3                            00000003
 TRISC4                            00000004
 TRISC5                            00000005
@@ -504,7 +500,7 @@ WR                                00000001
 WREN                              00000002
 WRERR                             00000003
 Z                                 00000002
-ZeroDivWithNum                    0000009F
+ZeroDivWithNum                    0000009C
 _BODEN_OFF                        00003FBF
 _BODEN_ON                         00003FFF
 _BOREN_OFF                        00003FBF
@@ -521,13 +517,13 @@ _DEBUG_ON                         000037FF
 _DEVID1                           00002006
 _FOSC_EXTRC                       00003FFF
 _FOSC_HS                          00003FFE
-MPASM 5.70                   BCD_ADAPTER.ASM   12-19-2016  17:18:15         PAGE 10
+_FOSC_LP                          00003FFC
+MPASM 5.70                   BCD_ADAPTER.ASM   12-20-2016  22:40:31         PAGE 10
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-_FOSC_LP                          00003FFC
 _FOSC_XT                          00003FFD
 _HS_OSC                           00003FFE
 _IDLOC0                           00002000
@@ -552,7 +548,7 @@ _XT_OSC                           00003FFD
 __16F877                          00000001
 
 Errors   :     0
-Warnings :     0 reported,     0 suppressed
+Warnings :     1 reported,     0 suppressed
 Messages :     2 reported,     0 suppressed
 
 

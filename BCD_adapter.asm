@@ -37,24 +37,21 @@ DigitLoop.3:
  GLOBAL BCD.3
 
  
-BCD.2:
-                        ;Timer=0x41                                
-                             ;d1=0x50
-Init.Func.BCD.2:               ;d2=0x51
-                             ;d3=0x52
+BCD.2.DIG:
+                                                             
+                             
+Init.Func.BCD.2:             ;INPUT:
+                             ;Timer=W=0x41 on first step			     ;OUTPUT:
+    MOVWF 0x41               ;d1=0x50
+                             ;d2=0x51
     MOVLW 0x0A               ;BCD={d3,d2,d1}
     MOVWF 0x40
-    
-    MOVFW 0x49
-    MOVWF 0x41
     
     MOVLW 0x02
     MOVWF 0x48
 
     MOVLW 0x50
     MOVWF FSR
-
-DigitLoop.2:
     
     CALL Hiluk
     
@@ -64,13 +61,12 @@ DigitLoop.2:
     INCF FSR
     
     MOVFW 0X42
-    MOVWF 0X41
+    MOVWF INDF
     
-    DECFSZ 0X48,F
-    GOTO DigitLoop.2
-   
     RETURN   
- 
+
+GLOBAL BCD.2.DIG    
+
 Hiluk:                    ;R=0X43 ,Q=0X42
     
 PreCheckH:

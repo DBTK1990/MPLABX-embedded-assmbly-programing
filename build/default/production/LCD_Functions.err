@@ -2,5 +2,6 @@ Warning[205] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD_FUNCTIONS.ASM 1 : Found d
 Message[302] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD_FUNCTIONS.ASM 10 : Register in operand not in bank 0.  Ensure that bank bits are correct.
 Message[302] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD_FUNCTIONS.ASM 12 : Register in operand not in bank 0.  Ensure that bank bits are correct.
 Message[302] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD_FUNCTIONS.ASM 13 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Warning[207] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD_FUNCTIONS.ASM 113 : Found label after column 1. (FORMAT.TIME)
-Warning[205] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD_FUNCTIONS.ASM 170 : Found directive in column 1. (GLOBAL)
+Warning[207] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD_FUNCTIONS.ASM 112 : Found label after column 1. (FORMAT.TIME)
+Warning[207] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD_FUNCTIONS.ASM 177 : Found label after column 1. (LOOP.TIME.2)
+Message[305] C:\USERS\DB141\MPLABXPROJECTS\EX-03.X\LCD_FUNCTIONS.ASM 182 : Using default destination of 1 (file).

@@ -1,0 +1,116 @@
+MPLINK 5.08, LINKER
+Linker Map File - Created Tue Dec 20 22:40:33 2016
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x00008a
+                   .cinit    romdata   0x000045    program   0x000004
+                     BCDI       code   0x000060    program   0x00007e
+                      LCD       code   0x000120    program   0x00011a
+.config_2007_BUILD/DEFAULT/PRODUCTION/LCD.CLO       code   0x002007    program   0x000002
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000046      
+                            0x000060    0x00009e      
+                            0x000120    0x0001ac      
+                            0x002007    0x002007      
+            276 out of 8454 program addresses used, program memory utilization is 3%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+         ASCII.NUMBER.255   0x000153    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+        ASCII.NUMBER.TIME   0x00018e    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+                    BANK0   0x000198    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+                    BANK1   0x00019c    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+                    BANK2   0x0001a0    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+                    BANK3   0x0001a4    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+                BCD.2.DIG   0x000071    program     extern C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+                    BCD.3   0x000060    program     extern C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+                 BuilderH   0x000088    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+            CantDivByZero   0x00009f    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+          DELAY.1SEC.TMR1   0x000035    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD.clock.asm
+                   DELAY0   0x0001aa    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+              DigitLoop.3   0x000068    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+              FORMAT.TIME   0x00015d    program     extern C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+       FUNCTION.LCD.WRITE   0x00013a    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+                    Hiluk   0x00007f    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+                 INIT.VAL   0x000002    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD.clock.asm
+                INITDELAY   0x0001a8    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+              INITDisplay   0x000120    program     extern C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+                INTURREPT   0x000041    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD.clock.asm
+          Init.Func.BCD.2   0x000071    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+          Init.Func.BCD.3   0x000060    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+                LOOP.1KHZ   0x00003f    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD.clock.asm
+                   LOOP.3   0x00014d    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+           LOOP.ASCII.255   0x000158    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+          LOOP.ASCII.TIME   0x000193    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+              LOOP.TIME.2   0x000188    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+                LoopHiluk   0x00008f    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+                MbigerBNo   0x000099    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+               MbigerBYes   0x000097    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+                PRINT.255   0x000146    program     extern C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+               PRINT.TIME   0x000182    program     extern C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+                PreCheckH   0x00007f    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+                    RESET   0x000000    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD.clock.asm
+               TIMERLOGIC   0x000002    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD.clock.asm
+            VAL.LCD.WRITE   0x000140    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+           ZeroDivWithNum   0x00009c    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+               countersec   0x000009    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD.clock.asm
+               countrhour   0x000025    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD.clock.asm
+                countrmin   0x000015    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD.clock.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    RESET   0x000000    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD.clock.asm
+               TIMERLOGIC   0x000002    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD.clock.asm
+                 INIT.VAL   0x000002    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD.clock.asm
+               countersec   0x000009    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD.clock.asm
+                countrmin   0x000015    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD.clock.asm
+               countrhour   0x000025    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD.clock.asm
+          DELAY.1SEC.TMR1   0x000035    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD.clock.asm
+                LOOP.1KHZ   0x00003f    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD.clock.asm
+                INTURREPT   0x000041    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD.clock.asm
+          Init.Func.BCD.3   0x000060    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+                    BCD.3   0x000060    program     extern C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+              DigitLoop.3   0x000068    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+          Init.Func.BCD.2   0x000071    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+                BCD.2.DIG   0x000071    program     extern C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+                    Hiluk   0x00007f    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+                PreCheckH   0x00007f    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+                 BuilderH   0x000088    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+                LoopHiluk   0x00008f    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+               MbigerBYes   0x000097    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+                MbigerBNo   0x000099    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+           ZeroDivWithNum   0x00009c    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+            CantDivByZero   0x00009f    program     static C:\Users\db141\MPLABXProjects\EX-03.X\BCD_adapter.asm
+              INITDisplay   0x000120    program     extern C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+       FUNCTION.LCD.WRITE   0x00013a    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+            VAL.LCD.WRITE   0x000140    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+                PRINT.255   0x000146    program     extern C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+                   LOOP.3   0x00014d    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+         ASCII.NUMBER.255   0x000153    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+           LOOP.ASCII.255   0x000158    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+              FORMAT.TIME   0x00015d    program     extern C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+               PRINT.TIME   0x000182    program     extern C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+              LOOP.TIME.2   0x000188    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+        ASCII.NUMBER.TIME   0x00018e    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+          LOOP.ASCII.TIME   0x000193    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+                    BANK0   0x000198    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+                    BANK1   0x00019c    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+                    BANK2   0x0001a0    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+                    BANK3   0x0001a4    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+                INITDELAY   0x0001a8    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+                   DELAY0   0x0001aa    program     static C:\Users\db141\MPLABXProjects\EX-03.X\LCD_Functions.asm
+
+

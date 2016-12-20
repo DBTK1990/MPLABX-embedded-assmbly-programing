@@ -10,7 +10,7 @@
 
 RESET:
     CALL INITDisplay
-    CALL FORMAT.TIME;FORMAT FUNCTION ON SCREEN AND INIT VARIABALE 
+   CALL FORMAT.TIME;FORMAT FUNCTION ON SCREEN AND INIT VARIABALE 
     
 TIMERLOGIC:
     
@@ -41,7 +41,7 @@ countersec:
 
     MOVFW 0X52
     CALL BCD.2.DIG
-    MOVLW 0XC9
+    MOVLW 0XCA
     CALL PRINT.TIME
                                 
     goto countersec
@@ -49,12 +49,12 @@ countersec:
     
 countrmin:
     
+    clrf 0x52
     MOVFW 0X52
     CALL BCD.2.DIG
-    MOVLW 0XC9
+    MOVLW 0XCA
     CALL PRINT.TIME
     
-    clrf 0x52
     bcf STATUS,Z
     
     movfw 0x55            ;constent=59
@@ -73,12 +73,13 @@ goto countersec
     
 countrhour:
     
+    CLRFW 0X53
     MOVFW 0X53
     CALL BCD.2.DIG
     MOVLW 0XC7
     CALL PRINT.TIME
     
-    clrf 0x53
+    
     bcf STATUS,Z
     
     movfw 0x56            ;constent=59
@@ -90,7 +91,7 @@ countrhour:
 
     MOVFW 0X53
     CALL BCD.2.DIG
-    MOVLW 0XC7
+    MOVLW 0XC4
     CALL PRINT.TIME
     
     goto countersec     
