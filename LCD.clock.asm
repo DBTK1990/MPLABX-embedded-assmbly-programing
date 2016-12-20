@@ -47,14 +47,14 @@ INIT.VAL:
 TIME.SEC:
     
     bcf STATUS,Z
-    call DELAY.1SEC.TMR1  ;!!!!SWITCH THIS DELAY TO IMTERNAL DELAY MUTASM!!!!
+	call DELAY.1SEC.TMR1  ;!!!!SWITCH THIS DELAY TO INTERNAL DELAY MUTASM!!!!
     
     movfw 0x55            ;constent=59
     subwf 0x52,w
     
     btfsc STATUS,Z    
     goto TIME.MIN ;1
-    incf 0x52      ;0
+    incf 0x52,F      ;0
 
     MOVFW 0X52
     CALL BCD.2.DIG
@@ -79,14 +79,14 @@ TIME.MIN:
 
     btfsc STATUS,Z    
     goto TIME.HOUR ;1
-    incf 0x53      ;0
+    incf 0x53,F      ;0
 
     MOVFW 0X53
     CALL BCD.2.DIG
     MOVLW 0XC7
     CALL PRINT.TIME
     
-GOTO TIME.SEC 
+    GOTO TIME.SEC 
     
 TIME.HOUR:
     
@@ -104,7 +104,7 @@ TIME.HOUR:
 
     btfsc STATUS,Z    
     goto RESET.HOUR;1
-    incf 0x54      ;0
+    incf 0x54,F      ;0
 
     MOVFW 0X54
     CALL BCD.2.DIG
@@ -113,7 +113,7 @@ TIME.HOUR:
     
     goto TIME.SEC     
     
-    RESET.HOUR:
+RESET.HOUR:
     
     CLRF 0X54
     MOVFW 0X54
@@ -123,14 +123,16 @@ TIME.HOUR:
     
     GOTO TIME.SEC
     
-    DELAY.1SEC.TMR1:
+DELAY.1SEC.TMR1:
     MOVLW 0X31             ;PRE,CLOCK CHOOSE,ENEBALE BIT
     MOVWF T1CON
     MOVLW 0XC8             ;LOW
     MOVWF TMR1L
     MOVLW 0X32
     MOVWF TMR1H            ;HIGH
+    BANKSEL PIE1
     BSF PIE1,TMR1IE        ;INTURPPET ENABLER? YES
+    BANKSEL PIR1
     BCF PIR1,TMR1IF        ;INIT INTURPET
 
     MOVLW 0X04
@@ -146,5 +148,4 @@ INTURREPT:
     GOTO LOOP.1KHZ
     RETURN
 
-
-END
+    END

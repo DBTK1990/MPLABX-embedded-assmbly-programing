@@ -25,7 +25,7 @@ DigitLoop.3:
     MOVFW 0x43
     MOVWF INDF
     
-    INCF FSR
+    INCF FSR,1
     
     MOVFW 0X42
     MOVWF 0X41
@@ -58,14 +58,14 @@ Init.Func.BCD.2:             ;INPUT:
     MOVFW 0x43
     MOVWF INDF
     
-    INCF FSR
+    INCF FSR,1
     
     MOVFW 0X42
     MOVWF INDF
     
     RETURN   
 
-GLOBAL BCD.2.DIG    
+    GLOBAL BCD.2.DIG    
 
 Hiluk:                    ;R=0X43 ,Q=0X42
     

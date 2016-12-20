@@ -1,4 +1,4 @@
-LIST 	P=PIC16F877
+   LIST P=PIC16F877
 #include <P16f877.inc>
 
 LCD CODE 0x9F
@@ -108,7 +108,7 @@ LOOP.ASCII.255:
    
    RETURN
 ;-----------------TIME.FUNCTION-------------------------------;
- FORMAT.TIME:
+FORMAT.TIME:
           
    MOVLW 0X84
    CALL FUNCTION.LCD.WRITE 
@@ -173,12 +173,12 @@ PRINT.TIME:
     MOVLW 0X51
     MOVWF FSR
     
-    LOOP.TIME.2:
+LOOP.TIME.2:
     
     MOVFW INDF
     CALL VAL.LCD.WRITE
     
-    DECF FSR
+    DECF FSR,1
     DECFSZ 0X48,F
     GOTO LOOP.TIME.2
     
